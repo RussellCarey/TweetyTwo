@@ -1,0 +1,38 @@
+name: Node.js CI
+
+# He added const path = require('path')
+# Used express.static path join thing..
+# react build builds folder and run all react from there..
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+#
+jobs:
+  build:
+    runs-on: self-hosted
+
+  steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: cd client_two
+        npm i
+        npm run build
+        pm2 start npm --name "tweety_client" -- run start
+        cd ../
+        cd ts_server
+        npm i
+        pm2 start npm --name "tweety_server" -- run start
+        cd ..
+        pm2 stop 0
+        pm2 start 0
+        pm2 stop 1
+        pm2 start 1
+        pm2 save
+        sudo service nginx restart

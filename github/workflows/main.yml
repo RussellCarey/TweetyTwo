@@ -1,8 +1,4 @@
-name: Node.js CI
-
-# He added const path = require('path')
-# Used express.static path join thing..
-# react build builds folder and run all react from there..
+name: tweetyCLI
 
 on:
   push:
@@ -10,7 +6,6 @@ on:
   pull_request:
     branches: [master]
 
-#
 jobs:
   build:
     runs-on: self-hosted

@@ -65,7 +65,3 @@ export interface IJobFromDB {
   refreshToken: string;
   is_active: boolean;
 }
-
-export interface ITESET {
-  string: string;
-}

@@ -20,6 +20,8 @@
 .env.production.local
 
 /ts_server/.env
+/ts_server/node_modules
+/client_two/node_modules
 
 npm-debug.log*
 yarn-debug.log*

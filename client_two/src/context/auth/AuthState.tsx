@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import axios from "axios";
 import * as Cookies from "js-cookie";
 import { ERequestOutcomes } from "../../types/errors";
-import { SET_LOGIN_DATA, IProps, IStateProps, IUserData } from "./types";
+import { SET_LOGIN_DATA, IProps, IStateProps } from "./types";
 
 import AuthContext from "./AuthContext";
 import AuthReducer from "./AuthReducer";

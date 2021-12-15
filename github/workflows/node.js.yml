@@ -18,16 +18,3 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: cd client_two
         npm i
-        npm run build
-        pm2 start npm --name "tweety_client" -- run start
-        cd ../
-        cd ts_server
-        npm i
-        pm2 start npm --name "tweety_server" -- run start
-        cd ..
-        pm2 stop 0
-        pm2 start 0
-        pm2 stop 1
-        pm2 start 1
-        pm2 save
-        sudo service nginx restart

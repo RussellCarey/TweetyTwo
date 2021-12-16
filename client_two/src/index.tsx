@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-// Add.. another
+// Add.. another..
 import ModalState from "./context/modal/ModalState";
 import JobState from "./context/jobs/JobsState";
 import AuthState from "./context/auth/AuthState";

@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
 
-// On when login is succsesful
+// On when login is succsesful!!!
 exports.onTwitterCallback = catchAsync(async (req: IRequestWithUser, res: Response, next: NextFunction) => {
   // Check we were able to get a user through login and save..
   if (!req.user) return next(new AppError("Couldnt verify user", 400));

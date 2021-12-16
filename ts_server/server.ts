@@ -53,6 +53,6 @@ app.use("/api/post", postRoutes);
 app.use(ErrorController);
 
 //? App listen start
-app.listen(process.env.PORT, () => {
+app.listen(4567, () => {
   console.log("Connected to server on port " + process.env.PORT);
 });

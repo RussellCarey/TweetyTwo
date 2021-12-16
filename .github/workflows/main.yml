@@ -1,5 +1,7 @@
 # HAd error with not indenting correctly - used GITHUB to check for errors
 # https://stackoverflow.com/questions/57806624/github-actions-how-to-build-project-in-sub-directory
+# :) :)
+
 name: Node.js CI
 
 on:
@@ -19,13 +21,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i
         working-directory: client_two
-      - run: sudo npm run build
+      - run: npm run build
         working-directory: client_two
+        env:
+          CI: false
       - run: pm2 start npm --name "tweety_client" -- run start
-        working-directory: client_two
+        working-directory: client_two/build
       - run: npm i
         working-directory: ts_server
-      - run: pm2 start npm --name "tweety_server" -- run start
+      - run: pm2 start npm --name "tweety_server" -- run start server.ts
         working-directory: ts_server
       - run: pm2 stop 0
       - run: pm2 start 0
@@ -33,3 +37,4 @@ jobs:
       - run: pm2 start 1
       - run: pm2 save
       - run: sudo service nginx restart
+      - run: pm2 resurrect

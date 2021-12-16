@@ -52,7 +52,11 @@ app.use("/api/post", postRoutes);
 
 app.use(ErrorController);
 
+process.on("uncaughtException", function (err) {
+  console.log(err);
+});
+
 //? App listen start
-app.listen(4567, () => {
-  console.log("Connected to server on port " + process.env.PORT);
+app.listen(3333, () => {
+  console.log("Connected to server on port ");
 });

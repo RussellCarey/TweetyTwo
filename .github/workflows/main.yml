@@ -14,11 +14,13 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
+      # Causes processes to be removed #ERROR - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - run: pm2 stop "tweety_client"
+      - run: pm2 stop "tweety_server"
       - run: npm i
         working-directory: client_two
       - run: npm run build

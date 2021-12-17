@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { theme } from "../../styles/theme/theme";
 import { ButtonHover } from "../../mixins/mixins";
 
+import isDev from "../../utils/is-dev";
+
 const Container = styled.button`
   color: ${theme.colors.text.white};
   background-color: ${theme.colors.ui.blue};
@@ -23,7 +25,11 @@ const Container = styled.button`
 
 const LoginButton: FunctionComponent = () => {
   return (
-    <a href="http://127.0.0.1:3333/api/auth/twitter">
+    <a
+      href={
+        isDev() ? "http://127.0.0.1:3333/api/auth/twitter" : "https://www.russell-carey.com/tweetyapi/api/auth/twitter"
+      }
+    >
       <Container>Login to twitter!</Container>
     </a>
   );

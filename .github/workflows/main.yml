@@ -25,6 +25,8 @@ jobs:
         working-directory: client_two
         env:
           CI: false
+      - run: pm2 delete tweety_client
+      - run: pm2 delete tweety_server
       - run: pm2 start npm --name "tweety_client" -- run start
         working-directory: client_two/build
       - run: npm i

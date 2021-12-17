@@ -10,7 +10,7 @@ const newTwitterStrategy: Strategy = new TwitterStrategy(
   {
     consumerKey: process.env.CONSUMER_API,
     consumerSecret: process.env.CONSUMER_SECRET_KEY,
-    callbackURL: process.env.CALLBACK_URL,
+    callbackURL: process.env.CALLBACK_URL_DEV,
     userProfileURL: process.env.PROFILE_URL,
   },
   async (accessToken: string, refreshToken: string, profile: ITwitterProfile, done: any) => {

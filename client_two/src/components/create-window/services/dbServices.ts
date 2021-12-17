@@ -3,6 +3,9 @@ import * as Cookies from "js-cookie";
 import { ERequestOutcomes } from "../../../types/errors";
 import { ITweetObject, IUploadAttempt } from "../types/types";
 
+import { projectURLS } from "../../../utils/urls";
+import isDev from "../../../utils/is-dev";
+
 export const uploadImageFile = async (image: File) => {
   // Upload image to server
   const data: FormData = new FormData();
@@ -12,7 +15,9 @@ export const uploadImageFile = async (image: File) => {
     const imagePost = await axios.request({
       method: "POST",
       withCredentials: true,
-      url: `http://localhost:3333/api/post/addImage`,
+      url: isDev()
+        ? `${projectURLS.development}/api/post/addImage`
+        : `${projectURLS.productionWithAPI}/api/post/addImage`,
       data,
       headers: {
         authorization: `${Cookies.get("token")}`,
@@ -30,7 +35,9 @@ export const uploadTweet = async (tweet: ITweetObject, uploadAttempt: IUploadAtt
     const post = await axios.request({
       method: "POST",
       withCredentials: true,
-      url: `http://localhost:3333/api/post/message`,
+      url: isDev()
+        ? `${projectURLS.development}/api/post/message`
+        : `${projectURLS.productionWithAPI}/api/post/message`,
       data: {
         date: tweet.date,
         time: tweet.time,

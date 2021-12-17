@@ -11,19 +11,15 @@ const ErrorController = require("./controllers/errorController");
 const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/postRoutes");
 
-const localArray = [
-  "http://127.0.0.1:3000",
-  "localhost:3000",
-  "http://localhost:3000",
-  "localhost:3000",
-  "http://localhost:3000/",
-];
+import { ENode } from "./types/enums";
+
+const localArray = ["http://127.0.0.1:3000", "https://www.russell-carey.com"];
 const productionArray = ["https://www.russell-carey.com", "https://russell-carey.com"];
 
 app.use(
   cors({
     credentials: true, // allow session cookie from browser to pass through
-    origin: process.env.NODE_ENV === "production" ? productionArray : localArray,
+    origin: process.env.NODE_ENV === ENode.prod ? productionArray : localArray,
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
@@ -37,10 +33,10 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: false,
+      secure: process.env.NODE_ENV === ENode.dev ? false : true,
       maxAge: 24 * 60 * 60 * 1000,
-      httpOnly: false,
-      sameSite: "Lax",
+      httpOnly: process.env.NODE_ENV === ENode.dev ? false : true,
+      sameSite: process.env.NODE_ENV === ENode.dev ? "lax" : "lax",
     },
   })
 );
@@ -57,6 +53,6 @@ process.on("uncaughtException", function (err) {
 });
 
 //? App listen start
-app.listen(3333, () => {
-  console.log("Connected to server on port ");
+app.listen(process.env.PORT, () => {
+  console.log("Connected to server!");
 });

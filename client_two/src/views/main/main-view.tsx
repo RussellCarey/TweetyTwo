@@ -22,7 +22,10 @@ const MainView: FunctionComponent = () => {
 
   useEffect(() => {
     // Return if not logged in..
-    if (!authState.user || !Cookies.get("connect.sid")) navigate("/");
+    if (!authState.user || !Cookies.get("connect.sid")) {
+      console.log("Moving back to thome");
+      navigate("/");
+    }
     getAllJobs();
   }, []);
 

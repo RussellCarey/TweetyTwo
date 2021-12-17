@@ -7,6 +7,9 @@ import { SET_LOGIN_DATA, IProps, IStateProps } from "./types";
 import AuthContext from "./AuthContext";
 import AuthReducer from "./AuthReducer";
 
+import isDev from "../../utils/is-dev";
+import { projectURLS } from "../../utils/urls";
+
 const AuthState = (props: IProps) => {
   const state: IStateProps = {
     isLoggedIn: false,
@@ -21,7 +24,9 @@ const AuthState = (props: IProps) => {
       const user = await axios.request({
         method: "POST",
         withCredentials: true,
-        url: `http://localhost:3333/api/auth/getUserData`,
+        url: isDev()
+          ? `${projectURLS.development}/api/auth/getUserData`
+          : `${projectURLS.productionWithAPI}/api/auth/getUserData`,
         headers: {
           authorization: `${Cookies.get("token")}`,
         },
@@ -40,7 +45,9 @@ const AuthState = (props: IProps) => {
       const user = await axios.request({
         method: "GET",
         withCredentials: true,
-        url: `http://127.0.0.1:3333/api/auth/logout`,
+        url: isDev()
+          ? `${projectURLS.development}/api/auth/logout`
+          : `${projectURLS.productionWithAPI}/api/auth/logout`,
         headers: {
           authorization: `${Cookies.get("token")}`,
         },

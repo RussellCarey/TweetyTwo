@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from "express";
 import { IRequestWithUser, ITwitterUserObject, ISessionRequest } from "../types/types";
-
+import { ENode } from "../types/enums";
 const jwt = require("jsonwebtoken");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
@@ -21,7 +21,10 @@ exports.onTwitterCallback = catchAsync(async (req: IRequestWithUser, res: Respon
 
   const token = await jwt.sign(twitterUserObject, process.env.JWT_SECRET);
 
-  res.set("location", "http://127.0.0.1:3000");
+  // Set return location depending on production or development.
+  const returnLocation = process.env.NODE_ENV === ENode.dev ? process.env.DEV_URL : process.env.PROD_URL;
+
+  res.set("location", returnLocation);
 
   // Passport sets a token, this is another..
   res.cookie("token", token, {

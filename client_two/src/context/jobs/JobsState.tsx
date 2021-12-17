@@ -7,6 +7,9 @@ import { SET_JOBS, SET_ALL_JOBS, RESET_JOBS, SHOW_WINDOW, CLOSE_WINDOW, IJobsSta
 
 import { IJobObject } from "./types";
 
+import isDev from "../../utils/is-dev";
+import { projectURLS } from "../../utils/urls";
+
 import JobsReducer from "./JobsReducer";
 import JobsContext from "./JobsContext";
 
@@ -28,7 +31,9 @@ const JobState = (props: IProps) => {
       const jobs = await axios.request({
         method: "POST",
         withCredentials: true,
-        url: `http://localhost:3333/api/post/getAllJobs`,
+        url: isDev()
+          ? `${projectURLS.development}/api/post/getAllJobs`
+          : `${projectURLS.productionWithAPI}/api/post/getAllJobs`,
         headers: {
           authorization: `${Cookies.get("token")}`,
         },
@@ -46,7 +51,9 @@ const JobState = (props: IProps) => {
       const jobDeleting = await axios.request({
         method: "POST",
         withCredentials: true,
-        url: `http://localhost:3333/api/post/deleteJob`,
+        url: isDev()
+          ? `${projectURLS.development}/api/post/deleteJob`
+          : `${projectURLS.productionWithAPI}/post/auth/deleteJob`,
         headers: {
           authorization: `${Cookies.get("token")}`,
         },

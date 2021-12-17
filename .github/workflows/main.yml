@@ -15,6 +15,26 @@ jobs:
     runs-on: self-hosted
     steps:
       # Causes processes to be removed #ERROR - uses: actions/checkout@v2!!!!!
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm i
+        working-directory: client_two
+      - run: npm run build
+        working-directory: client_two
+        env:
+          CI: false
+      - run: pm2 delete tweety_client
+      - run: pm2 delete tweety_server
+      - run: pm2 start npm --name "tweety_client" -- run start
+        working-directory: client_two/build
+      - run: npm i
+        working-directory: ts_server
+      - run: pm2 start npm --name "tweety_server" -- run start server.ts
+        working-directory: ts_server
+
       - name: Create env file
         run: |
           cd ts_server
@@ -35,28 +55,7 @@ jobs:
           echo JWT_SECRET='${{ secrets.JWT_SECRET }}' >> .env
           cat .env
 
-      - name: Remove old build folder
-        run: rm -r build
-        working-directory: client_two
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm i
-        working-directory: client_two
-      - run: npm run build
-        working-directory: client_two
-        env:
-          CI: false
-      - run: pm2 delete tweety_client
-      - run: pm2 delete tweety_server
-      - run: pm2 start npm --name "tweety_client" -- run start
-        working-directory: client_two/build
-      - run: npm i
-        working-directory: ts_server
-      - run: pm2 start npm --name "tweety_server" -- run start server.ts
-        working-directory: ts_server
+      - name: Stop and Start pm2 processes
       - run: pm2 stop 0
       - run: pm2 start 0
       - run: pm2 stop 1

@@ -2,15 +2,17 @@ import { Strategy } from "passport-twitter";
 import { ITwitterProfile } from "../types/types";
 import { checkUserExists, createNewUser } from "../services/createNewUser";
 
+import isDev from "../utils/isDev";
+
 const passport = require("passport");
 const TwitterStrategy = require("passport-twitter").Strategy;
 
 // THIS is a bit funny about URLs - make sure you go to http://127.0.0.1:5000 --- INCLUDE THE HTTP..
 const newTwitterStrategy: Strategy = new TwitterStrategy(
   {
-    consumerKey: process.env.CONSUMER_API,
-    consumerSecret: process.env.CONSUMER_SECRET_KEY,
-    callbackURL: process.env.CALLBACK_URL_DEV,
+    consumerKey: isDev() ? process.env.CONSUMER_API : process.env.PROD_CONSUMER_API,
+    consumerSecret: isDev() ? process.env.CONSUMER_SECRET_KEY : process.env.PROD_CONSUMER_SECRET,
+    callbackURL: isDev() ? process.env.CALLBACK_URL_DEV : process.env.PROD_CALLBACK_URL,
     userProfileURL: process.env.PROFILE_URL,
   },
   async (accessToken: string, refreshToken: string, profile: ITwitterProfile, done: any) => {

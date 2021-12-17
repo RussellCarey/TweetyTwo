@@ -1,17 +1,10 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const webpack = require("webpack");
 
 const basePath = __dirname;
-
-// new webpack.DefinePlugin({
-//   PRODUCTION: JSON.stringify(true),
-//   VERSION: JSON.stringify("5fa3b9"),
-//   BROWSER_SUPPORTS_HTML5: true,
-//   TWO: "1+1",
-//   "typeof window": JSON.stringify("object"),
-//   "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-// });
+const env = process.env.NODE_ENV || "production";
 
 module.exports = {
   context: path.join(basePath, "src"),
@@ -58,6 +51,11 @@ module.exports = {
   },
   plugins: [
     //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify(env),
+      },
+    }),
     new HtmlWebpackPlugin({
       filename: "index.html", //Name of file in ./dist/
       template: "index.html", //Name of template in ./src

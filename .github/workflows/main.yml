@@ -35,7 +35,7 @@ jobs:
           echo JWT_SECRET='${{ secrets.JWT_SECRET }}' >> .env
           cat .env
 
-      - name: Create env file
+      - name: Remove old build folder
         run: rm -r build
         working-directory: client_two
 

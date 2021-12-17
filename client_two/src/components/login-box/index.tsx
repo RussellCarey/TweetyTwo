@@ -9,7 +9,7 @@ import AuthContext from "../../context/auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import isDev from "../../utils/is-dev";
 
-const LoginArea = styled.button`
+const LoginArea = styled.div`
   width: max-content;
   height: max-content;
   padding: ${theme.spacing.space.xxxlage};

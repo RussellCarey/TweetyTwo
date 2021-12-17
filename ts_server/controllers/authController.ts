@@ -8,7 +8,7 @@ import isDev from "../utils/isDev";
 
 // On when login is succsesful!!!
 exports.onTwitterCallback = catchAsync(async (req: IRequestWithUser, res: Response, next: NextFunction) => {
-  // Check we were able to get a user through login and save..
+  // Check we were able to get a user through login and save.. :)
   if (!req.user) return next(new AppError("Couldnt verify user", 400));
 
   // Create user object

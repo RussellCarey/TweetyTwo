@@ -33,9 +33,7 @@ jobs:
         working-directory: ts_server
       - run: pm2 start npm --name "tweety_server" -- run start server.ts
         working-directory: ts_server
-
-      - name: Create env file
-        run: |
+      - run: |
           cd ts_server
           touch .env
           echo CALLBACK_URL='${{ secrets.CALLBACK_URL }}' >> .env
@@ -53,8 +51,6 @@ jobs:
           echo PROD_URL='${{ secrets.PROD_URL}}' >> .env
           echo JWT_SECRET='${{ secrets.JWT_SECRET }}' >> .env
           cat .env
-
-      - name: Start stop processes
       - run: |
           pm2 stop 0
           pm2 start 0

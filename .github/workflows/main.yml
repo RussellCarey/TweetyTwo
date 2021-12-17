@@ -20,23 +20,22 @@ jobs:
           cd ts_server
           touch .env
           echo API_KEY=${{ secrets.API_KEY }} >> .env
-          # Twitter details
-          echo API_KEY=${{ secrets.CONSUMER_API }} >> .env
-          echo API_KEY=${{ secrets.CONSUMER_SECRET }} >> .env
-          echo API_KEY=${{ secrets.CALLBACK_URL }} >> .env
-          echo API_KEY=${{ secrets.PROFILE_URL }} >> .env
-          echo API_KEY=${{ secrets.PROD_CONSUMER_API }} >> .env
-          echo API_KEY=${{ secrets.PROD_CONSUMER_SECRET_KEY }} >> .env
-          echo API_KEY=${{ secrets.PROD_CALLBACK_URL }} >> .env
-          echo API_KEY=${{ secrets.AWS_KEY }} >> .env
-          echo API_KEY=${{ secrets.AWS_SECRET }} >> .env
-          echo API_KEY=${{ secrets.SPACES_NAME }} >> .env
-          echo API_KEY=${{ secrets.JWT_SECRET }} >> .env
-          echo API_KEY=${{ secrets.CRYPT_SECRET }} >> .env
-          echo API_KEY=${{ secrets.CRYPT}} >> .env
-          echo API_KEY=${{ secrets.DATABASE_URL}} >> .env
-          echo API_KEY=${{ secrets.PORT}} >> .env
-          echo API_KEY=${{ secrets.PROD_URL}} >> .env
+          echo CONSUMER_API=${{ secrets.CONSUMER_API }} >> .env
+          echo CONSUMER_SECRET =${{ secrets.CONSUMER_SECRET }} >> .env
+          echo CALLBACK_URL=${{ secrets.CALLBACK_URL }} >> .env
+          echo PROFILE_URL=${{ secrets.PROFILE_URL }} >> .env
+          echo PROD_CONSUMER_API=${{ secrets.PROD_CONSUMER_API }} >> .env
+          echo PROD_CONSUMER_SECRET_KEY=${{ secrets.PROD_CONSUMER_SECRET_KEY }} >> .env
+          echo PROD_CALLBACK_URL=${{ secrets.PROD_CALLBACK_URL }} >> .env
+          echo AWS_KEY=${{ secrets.AWS_KEY }} >> .env
+          echo AWS_SECRET=${{ secrets.AWS_SECRET }} >> .env
+          echo SPACES_NAME=${{ secrets.SPACES_NAME }} >> .env
+          echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
+          echo CRYPT_SECRET=${{ secrets.CRYPT_SECRET }} >> .env
+          echo CRYPT=${{ secrets.CRYPT}} >> .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL}} >> .env
+          echo PORT=${{ secrets.PORT}} >> .env
+          echo PROD_URL=${{ secrets.PROD_URL}} >> .env
           cat .env
 
       - name: Use Node.js ${{ matrix.node-version }}

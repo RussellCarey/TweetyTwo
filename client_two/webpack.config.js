@@ -51,11 +51,6 @@ module.exports = {
   },
   plugins: [
     //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify(env),
-      },
-    }),
     new HtmlWebpackPlugin({
       filename: "index.html", //Name of file in ./dist/
       template: "index.html", //Name of template in ./src

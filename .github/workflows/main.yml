@@ -28,7 +28,7 @@ jobs:
       - run: pm2 delete tweety_client
       - run: pm2 delete tweety_server
       - run: pm2 start npm --name "tweety_client" -- run serve
-        working-directory: client_two/build
+        working-directory: client_two
       - run: npm i
         working-directory: ts_server
       - run: pm2 start npm --name "tweety_server" -- run start-prod

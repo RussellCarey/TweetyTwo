@@ -34,6 +34,13 @@ jobs:
         working-directory: ts_server
       - run: pm2 start npm --name "tweety_server" -- run start server.ts
         working-directory: ts_server
+      - run: pm2 stop 0
+      - run: pm2 start 0
+      - run: pm2 stop 1
+      - run: pm2 start 1
+      - run: pm2 save
+      - run: sudo service nginx restart
+      - run: pm2 resurrect
 
       - name: Create env file
         run: |
@@ -54,12 +61,3 @@ jobs:
           echo PROD_URL='${{ secrets.PROD_URL}}' >> .env
           echo JWT_SECRET='${{ secrets.JWT_SECRET }}' >> .env
           cat .env
-
-      - name: Stop and Start pm2 processes
-      - run: pm2 stop 0
-      - run: pm2 start 0
-      - run: pm2 stop 1
-      - run: pm2 start 1
-      - run: pm2 save
-      - run: sudo service nginx restart
-      - run: pm2 resurrect

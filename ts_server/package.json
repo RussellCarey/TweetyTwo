@@ -3,8 +3,8 @@
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
-    "start": "NODE_ENV=development nodemon server",
-    "start-prod": "NODE_ENV=production node server"
+    "start": "nodemon server",
+    "start-prod": "node server"
   },
   "dependencies": {
     "aws-sdk": "^2.1035.0",

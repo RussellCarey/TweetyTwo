@@ -3,7 +3,6 @@
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
-    "prestart": "npm run build",
     "start": "NODE_ENV=development nodemon server",
     "start-prod": "NODE_ENV=production node server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"

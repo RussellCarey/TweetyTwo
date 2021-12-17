@@ -31,7 +31,7 @@ jobs:
         working-directory: client_two/build
       - run: npm i
         working-directory: ts_server
-      - run: pm2 start npm --name "tweety_server" -- run start server.ts
+      - run: pm2 start npm --name "tweety_server" -- run start-prod
         working-directory: ts_server
       - run: |
           cd ts_server

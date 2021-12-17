@@ -7,6 +7,7 @@ import { NormalText } from "../resuable-styled/text";
 import AuthContext from "../../context/auth/AuthContext";
 
 import { useNavigate } from "react-router-dom";
+import isDev from "../../utils/is-dev";
 
 const LoginArea = styled.button`
   width: max-content;
@@ -60,6 +61,7 @@ const LoginBox: FunctionComponent = () => {
         <>
           <LoginTitle>Welcome to Tweety</LoginTitle>
           <SubTitle>The simple tweet scheduler.</SubTitle>
+          <SubTitle>{`Currently in dev? ${isDev()}`}</SubTitle>
           <LoginButton />
         </>
       ) : null}

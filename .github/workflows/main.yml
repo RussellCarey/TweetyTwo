@@ -15,6 +15,30 @@ jobs:
     runs-on: self-hosted
     steps:
       # Causes processes to be removed #ERROR - uses: actions/checkout@v2!!!!!
+      - name: Create env file
+        run: |
+          cd ts_server
+          touch .env
+          echo API_KEY=${{ secrets.API_KEY }} >> .env
+          # Twitter details
+          echo API_KEY=${{ secrets.CONSUMER_API }} >> .env
+          echo API_KEY=${{ secrets.CONSUMER_SECRET }} >> .env
+          echo API_KEY=${{ secrets.CALLBACK_URL }} >> .env
+          echo API_KEY=${{ secrets.PROFILE_URL }} >> .env
+          echo API_KEY=${{ secrets.PROD_CONSUMER_API }} >> .env
+          echo API_KEY=${{ secrets.PROD_CONSUMER_SECRET_KEY }} >> .env
+          echo API_KEY=${{ secrets.PROD_CALLBACK_URL }} >> .env
+          echo API_KEY=${{ secrets.AWS_KEY }} >> .env
+          echo API_KEY=${{ secrets.AWS_SECRET }} >> .env
+          echo API_KEY=${{ secrets.SPACES_NAME }} >> .env
+          echo API_KEY=${{ secrets.JWT_SECRET }} >> .env
+          echo API_KEY=${{ secrets.CRYPT_SECRET }} >> .env
+          echo API_KEY=${{ secrets.CRYPT}} >> .env
+          echo API_KEY=${{ secrets.DATABASE_URL}} >> .env
+          echo API_KEY=${{ secrets.PORT}} >> .env
+          echo API_KEY=${{ secrets.PROD_URL}} >> .env
+          cat .env
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:

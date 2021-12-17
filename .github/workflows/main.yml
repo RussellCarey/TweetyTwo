@@ -35,6 +35,10 @@ jobs:
           echo JWT_SECRET='${{ secrets.JWT_SECRET }}' >> .env
           cat .env
 
+      - name: Create env file
+        run: rm -r build
+        working-directory: client_two
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:

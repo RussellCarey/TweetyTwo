@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2!!!!
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -27,7 +27,7 @@ jobs:
           CI: false
       - run: pm2 delete tweety_client
       - run: pm2 delete tweety_server
-      - run: pm2 start npm --name "tweety_client" -- run start
+      - run: pm2 start npm --name "tweety_client" -- run serve
         working-directory: client_two/build
       - run: npm i
         working-directory: ts_server

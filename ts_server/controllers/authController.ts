@@ -4,6 +4,7 @@ import { ENode } from "../types/enums";
 const jwt = require("jsonwebtoken");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
+import isDev from "../utils/isDev";
 
 // On when login is succsesful!!!
 exports.onTwitterCallback = catchAsync(async (req: IRequestWithUser, res: Response, next: NextFunction) => {
@@ -22,7 +23,7 @@ exports.onTwitterCallback = catchAsync(async (req: IRequestWithUser, res: Respon
   const token = await jwt.sign(twitterUserObject, process.env.JWT_SECRET);
 
   // Set return location depending on production or development.
-  const returnLocation = process.env.NODE_ENV === ENode.dev ? process.env.DEV_URL : process.env.PROD_URL;
+  const returnLocation = isDev() ? process.env.DEV_URL : process.env.PROD_URL;
 
   res.set("location", returnLocation);
 

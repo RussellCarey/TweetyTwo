@@ -36,7 +36,7 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === ENode.dev ? false : false,
       maxAge: 24 * 60 * 60 * 1000,
-      httpOnly: process.env.NODE_ENV === ENode.dev ? false : false,
+      httpOnly: process.env.NODE_ENV === ENode.dev ? false : true,
       sameSite: process.env.NODE_ENV === ENode.dev ? "lax" : "lax",
     },
   })

@@ -15,9 +15,7 @@ export const uploadImageFile = async (image: File) => {
     const imagePost = await axios.request({
       method: "POST",
       withCredentials: true,
-      url: isDev()
-        ? `${projectURLS.development}/api/post/addImage`
-        : `${projectURLS.productionWithAPI}/api/post/addImage`,
+      url: isDev() ? `${projectURLS.development}/api/post/addImage` : `${projectURLS.productionWithAPI}/post/addImage`,
       data,
       headers: {
         authorization: `${Cookies.get("token")}`,
@@ -35,9 +33,7 @@ export const uploadTweet = async (tweet: ITweetObject, uploadAttempt: IUploadAtt
     const post = await axios.request({
       method: "POST",
       withCredentials: true,
-      url: isDev()
-        ? `${projectURLS.development}/api/post/message`
-        : `${projectURLS.productionWithAPI}/api/post/message`,
+      url: isDev() ? `${projectURLS.development}/api/post/message` : `${projectURLS.productionWithAPI}/post/message`,
       data: {
         date: tweet.date,
         time: tweet.time,

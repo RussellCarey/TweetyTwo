@@ -33,7 +33,7 @@ const JobState = (props: IProps) => {
         withCredentials: true,
         url: isDev()
           ? `${projectURLS.development}/api/post/getAllJobs`
-          : `${projectURLS.productionWithAPI}/api/post/getAllJobs`,
+          : `${projectURLS.productionWithAPI}/post/getAllJobs`,
         headers: {
           authorization: `${Cookies.get("token")}`,
         },

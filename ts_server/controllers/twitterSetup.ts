@@ -9,13 +9,9 @@ const TwitterStrategy = require("passport-twitter").Strategy;
 // THIS is a bit funny about URLs - make sure you go to http://127.0.0.1:5000 --- INCLUDE THE HTTP.......
 const newTwitterStrategy: Strategy = new TwitterStrategy(
   {
-    // consumerKey: isDev() ? process.env.CONSUMER_API : process.env.PROD_CONSUMER_API,
-    // consumerSecret: isDev() ? process.env.CONSUMER_SECRET_KEY : process.env.PROD_CONSUMER_SECRET_KEY,
-    // callbackURL: isDev() ? process.env.CALLBACK_URL_DEV : process.env.PROD_CALLBACK_URL,
-    // userProfileURL: process.env.PROFILE_URL,
-    consumerKey: process.env.PROD_CONSUMER_API,
-    consumerSecret: process.env.PROD_CONSUMER_SECRET_KEY,
-    callbackURL: process.env.PROD_CALLBACK_URL,
+    consumerKey: isDev() ? process.env.CONSUMER_API : process.env.PROD_CONSUMER_API,
+    consumerSecret: isDev() ? process.env.CONSUMER_SECRET_KEY : process.env.PROD_CONSUMER_SECRET_KEY,
+    callbackURL: isDev() ? process.env.CALLBACK_URL_DEV : process.env.PROD_CALLBACK_URL,
     userProfileURL: process.env.PROFILE_URL,
   },
   async (accessToken: string, refreshToken: string, profile: ITwitterProfile, done: any) => {

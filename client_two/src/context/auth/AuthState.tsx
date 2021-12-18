@@ -26,7 +26,7 @@ const AuthState = (props: IProps) => {
         withCredentials: true,
         url: isDev()
           ? `${projectURLS.development}/api/auth/getUserData`
-          : `${projectURLS.productionWithAPI}/api/auth/getUserData`,
+          : `${projectURLS.productionWithAPI}/auth/getUserData`,
         headers: {
           authorization: `${Cookies.get("token")}`,
         },
@@ -45,9 +45,7 @@ const AuthState = (props: IProps) => {
       const user = await axios.request({
         method: "GET",
         withCredentials: true,
-        url: isDev()
-          ? `${projectURLS.development}/api/auth/logout`
-          : `${projectURLS.productionWithAPI}/api/auth/logout`,
+        url: isDev() ? `${projectURLS.development}/api/auth/logout` : `${projectURLS.productionWithAPI}/auth/logout`,
         headers: {
           authorization: `${Cookies.get("token")}`,
         },

@@ -53,7 +53,7 @@ const JobState = (props: IProps) => {
         withCredentials: true,
         url: isDev()
           ? `${projectURLS.development}/api/post/deleteJob`
-          : `${projectURLS.productionWithAPI}/post/auth/deleteJob`,
+          : `${projectURLS.productionWithAPI}/post/deleteJob`,
         headers: {
           authorization: `${Cookies.get("token")}`,
         },
@@ -86,6 +86,7 @@ const JobState = (props: IProps) => {
     dispatch({ type: SET_ALL_JOBS, payload: job });
   };
 
+  // DIDNT GET WORKING
   // const orderJobsByField = (type: EOrderJobs) => {
   //   if (EOrderJobs.status) {
   //     const sortLetter = (a: IJobObject, b: IJobObject) => (a.status > b.status ? 1 : b.status > a.status ? -1 : 0);

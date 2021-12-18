@@ -1,7 +1,6 @@
 import { Strategy } from "passport-twitter";
 import { ITwitterProfile } from "../types/types";
 import { checkUserExists, createNewUser } from "../services/createNewUser";
-
 import isDev from "../utils/isDev";
 
 const passport = require("passport");
@@ -11,7 +10,7 @@ const TwitterStrategy = require("passport-twitter").Strategy;
 const newTwitterStrategy: Strategy = new TwitterStrategy(
   {
     consumerKey: isDev() ? process.env.CONSUMER_API : process.env.PROD_CONSUMER_API,
-    consumerSecret: isDev() ? process.env.CONSUMER_SECRET_KEY : process.env.PROD_CONSUMER_SECRET,
+    consumerSecret: isDev() ? process.env.CONSUMER_SECRET_KEY : process.env.PROD_CONSUMER_SECRET_KEY,
     callbackURL: isDev() ? process.env.CALLBACK_URL_DEV : process.env.PROD_CALLBACK_URL,
     userProfileURL: process.env.PROFILE_URL,
   },

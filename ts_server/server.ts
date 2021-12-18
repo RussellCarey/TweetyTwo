@@ -12,7 +12,7 @@ const ErrorController = require("./controllers/errorController");
 const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/postRoutes");
 
-import { ENode } from "./types/enums";
+const { ENode } = require("./types/enums");
 
 const localArray = ["http://127.0.0.1:3000", "https://www.russell-carey.com"];
 const productionArray = ["https://www.russell-carey.com", "https://russell-carey.com"];

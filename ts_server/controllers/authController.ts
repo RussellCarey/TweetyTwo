@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from "express";
 import { IRequestWithUser, ITwitterUserObject, ISessionRequest } from "../types/types";
-import { ENode } from "../types/enums";
+
 const jwt = require("jsonwebtoken");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");

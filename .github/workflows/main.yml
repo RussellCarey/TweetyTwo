@@ -21,18 +21,24 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i
         working-directory: client_two
+
       - run: npm run build
         working-directory: client_two
         env:
           CI: false
+
       - run: pm2 delete tweety_client
       - run: pm2 delete tweety_server
+
       - run: pm2 start npm --name "tweety_client" -- run serve
         working-directory: client_two
+
       - run: npm i
         working-directory: ts_server
+
       - run: pm2 start npm --name "tweety_server" -- run start-prod
         working-directory: ts_server
+
       - run: |
           cd ts_server
           touch .env
@@ -51,6 +57,7 @@ jobs:
           echo PROD_URL='${{ secrets.PROD_URL}}' >> .env
           echo JWT_SECRET='${{ secrets.JWT_SECRET }}' >> .env
           cat .env
+
       - run: |
           pm2 stop 0
           pm2 start 0

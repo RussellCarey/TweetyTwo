@@ -12,7 +12,7 @@ const AppError = require("../utils/AppError");
 const MediaController = require("../controllers/mediaController");
 const DatabaseServies = require("../services/databaseServices");
 
-// On when login is succsesful
+// On when login is succsesful...
 exports.uploadTweet = catchAsync(async (req: IReqWithBody, res: Response, next: NextFunction) => {
   // Check we were able to get a user through login and save..
   if (!req.body || !req.user) return next(new AppError("No body or user", 400));

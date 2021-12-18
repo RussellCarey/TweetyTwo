@@ -6,7 +6,7 @@ import isDev from "../utils/isDev";
 const passport = require("passport");
 const TwitterStrategy = require("passport-twitter").Strategy;
 
-// THIS is a bit funny about URLs - make sure you go to http://127.0.0.1:5000 --- INCLUDE THE HTTP....
+// THIS is a bit funny about URLs - make sure you go to http://127.0.0.1:5000 --- INCLUDE THE HTTP.....
 const newTwitterStrategy: Strategy = new TwitterStrategy(
   {
     consumerKey: isDev() ? process.env.CONSUMER_API : process.env.PROD_CONSUMER_API,

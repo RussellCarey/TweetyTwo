@@ -44,8 +44,8 @@ app.use(
 app.use(passportServer.initialize());
 app.use(passportServer.session());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/post", postRoutes);
+app.use("/tweetyapi/auth", authRoutes);
+app.use("/tweetyapi/post", postRoutes);
 
 app.use(ErrorController);
 

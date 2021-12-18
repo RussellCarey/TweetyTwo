@@ -4,6 +4,10 @@ const expressRoute = require("express");
 const router = expressRoute.Router();
 import { Request, Response } from "express";
 
+// ping server
+// Login attempt to twitter.
+router.get("/ping", authController.ping);
+
 // Login attempt to twitter.
 router.get("/twitter", passportRoute.authenticate("twitter"));
 

@@ -6,6 +6,13 @@ const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
 import isDev from "../utils/isDev";
 
+exports.ping = catchAsync(async (req: IRequestWithUser, res: Response, next: NextFunction) => {
+  res.json({
+    status: "success",
+    message: "Pinged okay!",
+  });
+});
+
 // On when login is succsesful!!!
 exports.onTwitterCallback = catchAsync(async (req: IRequestWithUser, res: Response, next: NextFunction) => {
   // Check we were able to get a user through login and save.. :)

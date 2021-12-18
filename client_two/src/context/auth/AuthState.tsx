@@ -19,6 +19,7 @@ const AuthState = (props: IProps) => {
 
   const [authState, dispatch] = useReducer(AuthReducer, state);
 
+  // Get all user posts
   const getUserData = async () => {
     try {
       const user = await axios.request({

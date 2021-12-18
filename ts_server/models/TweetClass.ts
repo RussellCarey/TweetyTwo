@@ -75,6 +75,8 @@ export class TweetJobClass {
 
   // Create the job into the scheduler..
   private createScedule = catchAsync(async (self: TweetJobClass) => {
+    console.log(`created new schedule for message ${this.message}`);
+
     // Convert date to CRON format - from the DB and front end is a normal date.
     const formattedDate = TweetClassServices.convertDateToCronDate(this.date);
 
@@ -100,6 +102,7 @@ export class TweetJobClass {
 
   // Promise to post the tweet with media..
   private twitterPostTweetWithImage = async (mediaData: any, Twitter: typeof Twit) => {
+    console.log(`Posting a tweet with message ${this.message} and time ${this.date}`);
     const twitterPostWithImage = Twitter.post("statuses/update", {
       status: `${this.message}`,
       media_ids: mediaData.data.media_id_string,

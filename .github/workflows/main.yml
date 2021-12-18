@@ -43,6 +43,7 @@ jobs:
       - run: |
           cd ts_server
           touch .env
+          echo NODE_ENV='${{ secrets.NODE_ENV }}' >> .env
           echo CALLBACK_URL='${{ secrets.CALLBACK_URL }}' >> .env
           echo PROFILE_URL='${{ secrets.PROFILE_URL }}' >> .env
           echo PROD_CONSUMER_API='${{ secrets.PROD_CONSUMER_API }}' >> .env

@@ -28,8 +28,8 @@ exports.uploadTweet = catchAsync(async (req: IReqWithBody, res: Response, next: 
   const imageURL = req.body.imageURL;
   const imageName = req.body.imageName;
 
-  const access: string = cryptr.decrypt(userDataObject.access_token);
-  const refresh: string = cryptr.decrypt(userDataObject.refresh_token);
+  const access: string = await cryptr.decrypt(userDataObject.access_token);
+  const refresh: string = await cryptr.decrypt(userDataObject.refresh_token);
 
   // We pass in null at the end as this is  NEW job, it doesnt have an ID yet from UUID
   Schedule.createNewJob(twitterID, message, date, imageURL, imageName, access, refresh, true, null);

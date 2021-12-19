@@ -31,12 +31,8 @@ exports.uploadTweet = catchAsync(async (req: IReqWithBody, res: Response, next: 
   const access: string = cryptr.decrypt(userDataObject.access_token);
   const refresh: string = cryptr.decrypt(userDataObject.refresh_token);
 
-  console.log("Recieved a reuqest in post controller");
-
   // We pass in null at the end as this is  NEW job, it doesnt have an ID yet from UUID
   Schedule.createNewJob(twitterID, message, date, imageURL, imageName, access, refresh, true, null);
-
-  console.log("Getting all jobs");
 
   // Get all jobs here to send back to the client - verifies it matches that on the DB..
   const allJobs = await DatabaseServies.getAllUsersJobs(twitterID);

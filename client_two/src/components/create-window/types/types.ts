@@ -4,6 +4,7 @@ export interface ITweetObject {
   message: string;
   date: string;
   time: string;
+  unix: number;
 }
 
 export interface IUploadAttempt {

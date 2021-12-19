@@ -20,8 +20,7 @@ export interface IReqWithBody {
 
 export interface IPostBody extends Request {
   message: string;
-  time: string;
-  date: string;
+  unix: string;
   accessToken: string;
   refreshToken: string;
   jobID: string;
@@ -56,7 +55,7 @@ export interface IJobFromDB {
   twitter_id: number;
   status: string;
   message: string;
-  date: string;
+  date: number;
   image_url: string;
   image_name: string;
   access_token: string;

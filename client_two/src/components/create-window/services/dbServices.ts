@@ -35,8 +35,7 @@ export const uploadTweet = async (tweet: ITweetObject, uploadAttempt: IUploadAtt
       withCredentials: true,
       url: isDev() ? `${projectURLS.development}/api/post/message` : `${projectURLS.productionWithAPI}/post/message`,
       data: {
-        date: tweet.date,
-        time: tweet.time,
+        unix: tweet.unix,
         message: tweet.message,
         imageURL: uploadAttempt ? uploadAttempt.url : null,
         imageName: uploadAttempt ? uploadAttempt.name : null,

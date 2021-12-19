@@ -1,11 +1,14 @@
+import { ITweetObject } from "../types/types";
+
 export const checkWordCount = (wordCount: number) => {
   if (wordCount >= 280) return false;
   if (wordCount <= 0) return false;
   return true;
 };
 
-export const checkDateInputs = (date: string, time: string) => {
-  if (date === "" || date === null) return false;
-  if (time === "" || time === null) return false;
+export const checkDateInputs = (tweet: ITweetObject) => {
+  if (tweet.date === "" || tweet.date === null) return false;
+  if (tweet.time === "" || tweet.time === null) return false;
+  if (tweet.unix === 0) return false;
   return true;
 };

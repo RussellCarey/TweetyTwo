@@ -16,7 +16,7 @@ export class TweetJobClass {
   private twitterID: number;
   id: string | null;
   message: string;
-  date: Date;
+  date: number;
   imageURL: string | null;
   imageName: string;
   private accessToken: string;
@@ -29,7 +29,7 @@ export class TweetJobClass {
     scheduleManager: ScheduleClass,
     twitterID: number,
     message: string,
-    date: Date,
+    date: number,
     imageURL: string | null,
     imageName: string,
     access: string,
@@ -70,19 +70,19 @@ export class TweetJobClass {
   // Cancel a job from the scheulder..
   cancelJob = () => {
     // Cancel job so stop any re activations..
-    this.scheduledData!.cancel();
+    this.scheduledData ? this.scheduledData.cancel() : null;
   };
 
   // Create the job into the scheduler..
   private createScedule = catchAsync(async (self: TweetJobClass) => {
-    console.log(`created new schedule for message ${this.message}`);
+    console.log(`created new schedule for message ${this.message} at time ${new Date(this.date)}`);
 
     // Convert date to CRON format - from the DB and front end is a normal date.
     const formattedDate = TweetClassServices.convertDateToCronDate(this.date);
 
     // If this is a NEW creation, then we need to save it to the database..
     if (this.isNew) {
-      TweetClassServices.createNewDBJob(this, this.date, this.twitterID);
+      TweetClassServices.createNewDBJob(this, this.twitterID);
     }
 
     // Create the schedule object..

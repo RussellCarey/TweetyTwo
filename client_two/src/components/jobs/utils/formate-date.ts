@@ -1,5 +1,5 @@
 export const formateTimeToString = (date: string) => {
-  const datey = new Date(date);
+  const datey = new Date(+date);
   const hours = datey.getHours();
   const formattedHours = hours < 10 ? `0${hours}` : hours;
   const minutes = datey.getMinutes();
@@ -8,7 +8,7 @@ export const formateTimeToString = (date: string) => {
 };
 
 export const formatDateToString = (date: string) => {
-  const datey = new Date(date);
+  const datey = new Date(+date);
   const year = datey.getFullYear();
   const month = datey.getMonth() + 1;
   const formattedMonth = month < 10 ? `0${month}` : month;

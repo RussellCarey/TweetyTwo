@@ -6,7 +6,6 @@ const cryptr = new Cryptr(`${process.env.CRYPT}`);
 
 // Parse auth tokens
 export const parseDateTokensCreateJob = (self: ScheduleClass, jobs: IJobFromDB) => {
-  const date = new Date(jobs.date);
   const accessToken = cryptr.decrypt(jobs.access_token);
   const refreshToken = cryptr.decrypt(jobs.refresh_token);
 
@@ -14,7 +13,7 @@ export const parseDateTokensCreateJob = (self: ScheduleClass, jobs: IJobFromDB) 
   self.createNewJob(
     jobs.twitter_id,
     jobs.message,
-    date,
+    jobs.date,
     jobs.image_url,
     jobs.image_name,
     accessToken,

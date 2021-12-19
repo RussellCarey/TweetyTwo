@@ -1,7 +1,6 @@
 const express = require("express");
 const session = require("express-session");
 const passportServer = require("passport");
-const schedule = require("node-schedule");
 const cors = require("cors");
 const app = express();
 
@@ -13,6 +12,7 @@ const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/postRoutes");
 
 const { ENode } = require("./types/enums");
+import isDev from "./utils/isDev";
 
 const localArray = ["http://127.0.0.1:3000", "https://www.russell-carey.com"];
 const productionArray = ["https://www.russell-carey.com", "https://russell-carey.com"];
@@ -41,17 +41,14 @@ app.use(
     },
   })
 );
+
 app.use(passportServer.initialize());
 app.use(passportServer.session());
 
-app.use("/tweetyapi/auth", authRoutes);
-app.use("/tweetyapi/post", postRoutes);
+app.use(!isDev() ? "/tweetyapi/auth" : "/api/auth", authRoutes);
+app.use(!isDev() ? "/tweetyapi/post" : "/api/post", postRoutes);
 
 app.use(ErrorController);
-
-process.on("uncaughtException", function (err) {
-  console.log(err);
-});
 
 //? App listen start
 app.listen(process.env.PORT, () => {

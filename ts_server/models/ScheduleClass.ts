@@ -80,7 +80,7 @@ export class ScheduleClass {
   // When wrapped in async and catch async it didnt  work..
   //prettier-ignore
   createNewJob = (
-    twitterID: number,message: string,date: Date, imageURL: string, imageName: string, access: string, refresh: string, isNew: boolean, id: string | null
+    twitterID: number, message: string, date: number, imageURL: string, imageName: string, access: string, refresh: string, isNew: boolean, id: string | null
   ) => {
     const jobID = id ? id : null;
     const newJob = new TweetJobClass(this, twitterID, message, date, imageURL, imageName, access, refresh, isNew, jobID);

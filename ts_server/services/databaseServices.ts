@@ -22,10 +22,10 @@ export const getAllUsersJobs = async (twitterID: string) => {
 };
 
 // Upload one job to the DB..
-export const uploadOneJob = async (self: TweetJobClass, date: Date, twitterID: number) => {
+export const uploadOneJob = async (self: TweetJobClass, twitterID: number) => {
   const uploadedJob = await pool.query(
     `INSERT INTO jobs (job_id, user_twitter_id, message, date, image_url, image_name, status) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-    [self.id, twitterID, self.message, date, self.imageURL, self.imageName, "pending"]
+    [self.id, twitterID, self.message, self.date, self.imageURL, self.imageName, "pending"]
   );
   return uploadedJob;
 };
@@ -71,8 +71,14 @@ export const checkUserExists = async (twitterID: string) => {
 
 // Get jobs for today only..
 export const getTodaysJobs = async () => {
+  // Get the current time in UNIX and another one day later..
+  const nowDate = Math.floor(Date.now() / 1000);
+  const oneDate = Math.floor(Date.now() / 1000 + 3600 * 1000 * 24);
+
+  // Get todays jobs based on one day from now..
   const todaysJobs = await pool.query(
-    `select * from jobs JOIN users ON users.twitter_id = user_twitter_id WHERE  date > NOW() AND date < NOW() + interval '1 day'`
+    `SELECT * FROM jobs JOIN users ON users.twitter_id = user_twitter_id WHERE date > $1 AND date < $1 + $2`,
+    [nowDate, oneDate]
   );
 
   return todaysJobs;

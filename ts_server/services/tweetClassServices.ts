@@ -17,10 +17,10 @@ export const NewTwit = (access: string, refresh: string) => {
 };
 
 // Creates the JOB onto the DB..
-export const createNewDBJob = async (self: TweetJobClass, date: Date, twitterID: number) => {
+export const createNewDBJob = async (self: TweetJobClass, twitterID: number) => {
   try {
     // Upload to the DB.
-    const uploadedJob = DatabaseServices.uploadOneJob(self, date, twitterID);
+    const uploadedJob = DatabaseServices.uploadOneJob(self, twitterID);
     return uploadedJob;
   } catch (error) {
     await Schedule.deleteJobFromQueue(self.id!);
@@ -29,7 +29,8 @@ export const createNewDBJob = async (self: TweetJobClass, date: Date, twitterID:
 };
 
 // Change date to cron timing from a date string..
-export const convertDateToCronDate = (date: Date) => {
+export const convertDateToCronDate = (unix: number) => {
+  const date = new Date(unix);
   const year: number = +date.getFullYear();
   const month: number = +date.getMonth();
   const day: number = +date.getDate();

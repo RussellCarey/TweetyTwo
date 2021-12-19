@@ -76,6 +76,7 @@ export class TweetJobClass {
   // Create the job into the scheduler..
   private createScedule = catchAsync(async (self: TweetJobClass) => {
     console.log(`created new schedule for message ${this.message} at time ${new Date(this.date)}`);
+    console.log(`and its codes are ${self.accessToken} and ${self.refreshToken}`);
 
     // Convert date to CRON format - from the DB and front end is a normal date.
     const formattedDate = TweetClassServices.convertDateToCronDate(this.date);

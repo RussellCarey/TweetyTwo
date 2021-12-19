@@ -24,6 +24,7 @@ module.exports = (err: IError, req: Request, res: Response, next: NextFunction) 
   err.status = err.status || "error";
   console.log("This error is from the error controller. BEEP BEEP BOOP BOOP");
   console.log(err);
+  console.log(err.stack);
 
   if (process.env.NODE_ENV === "development") {
     sendErrorDev(err, res);

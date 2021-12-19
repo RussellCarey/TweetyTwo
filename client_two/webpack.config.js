@@ -1,10 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
-const webpack = require("webpack");
 
 const basePath = __dirname;
-const env = process.env.NODE_ENV || "production";
 
 module.exports = {
   context: path.join(basePath, "src"),

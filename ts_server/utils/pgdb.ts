@@ -11,7 +11,7 @@ const prodPool = new Pool({
 const devPool = new Pool({
   host: "localhost",
   user: "postgres",
-  password: "Fromthedepths1122!!",
+  password: process.env.DEV_DATABASE_PW,
   port: 6543,
   max: 20,
   idleTimeoutMillis: 30000,

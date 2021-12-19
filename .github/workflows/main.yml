@@ -54,7 +54,7 @@ jobs:
           echo SPACES_NAME='${{ secrets.SPACES_NAME }}' >> .env
           echo CRYPT_SECRET='${{ secrets.CRYPT_SECRET }}' >> .env
           echo CRYPT='${{ secrets.CRYPT}}' >> .env
-          echo DATABASE_URL='${{ secrets.DATABASE_URL}}' >> .env
+          echo PROD_DATABASE_URL='${{ secrets.PROD_DATABASE_URL}}' >> .env
           echo PORT='${{ secrets.PORT}}' >> .env
           echo PROD_URL='${{ secrets.PROD_URL}}' >> .env
           echo JWT_SECRET='${{ secrets.JWT_SECRET }}' >> .env

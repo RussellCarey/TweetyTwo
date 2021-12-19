@@ -18,4 +18,4 @@ const devPool = new Pool({
   connectionTimeoutMillis: 2000,
 });
 
-module.exports = prodPool;
+module.exports = isDev() ? devPool : prodPool;

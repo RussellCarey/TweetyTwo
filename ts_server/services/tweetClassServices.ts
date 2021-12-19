@@ -1,15 +1,15 @@
 const Twit = require("twit");
 const AppError = require("../utils/AppError");
-const catchAsync = require("../utils/catchAsync");
 const DatabaseServices = require("../services/databaseServices");
 import { TweetJobClass } from "../models/TweetClass";
 import { Schedule } from "../models/ScheduleClass";
+import isDev from "../utils/isDev";
 
 // Creates a new twitter 'controller' with users details..
 export const NewTwit = (access: string, refresh: string) => {
   return new Twit({
-    consumer_key: process.env.CONSUMER_API,
-    consumer_secret: process.env.CONSUMER_SECRET_KEY,
+    consumer_key: isDev() ? process.env.CONSUMER_API : process.env.PROD_CONSUMER_API,
+    consumer_secret: isDev() ? process.env.CONSUMER_SECRET_KEY : process.env.PROD_CONSUMER_SECRET_KEY,
     access_token: access,
     access_token_secret: refresh,
     timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.

@@ -20,7 +20,6 @@ const ScheduleList: FunctionComponent = () => {
 
   return (
     <Container>
-      {console.log(jobsState.jobs)}
       {jobsState.jobs
         ? jobsState.jobs.map((jobs: IRequestJobObject) => {
             return <ScheduleItem key={jobs.job_id} jobData={jobs} />;

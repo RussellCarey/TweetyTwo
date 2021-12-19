@@ -52,7 +52,7 @@ exports.getAllJobs = catchAsync(async (req: IReqWithBody, res: Response, next: N
 
   // Get job list and filter out this that are success and inactive. (Finished with no errors...)
   const allJobs = await DatabaseServies.getAllUsersJobs(twitterID);
-  const rows = allJobs.rows.filter((jobs: IJobFromDB) => jobs.is_active !== false && jobs.status !== "success");
+  const rows = allJobs.rows.filter((jobs: IJobFromDB) => jobs.is_active !== false);
   allJobs.rows = rows;
 
   res.json({

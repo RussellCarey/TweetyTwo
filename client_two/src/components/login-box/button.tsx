@@ -26,7 +26,7 @@ const Container = styled.button`
 
 const LoginButton: FunctionComponent = () => {
   return (
-    <a href={isDev() ? `${projectURLS.development}/api/auth/twitter` : `${projectURLS.productionWithAPI}/auth/twitter`}>
+    <a href={isDev() ? `${projectURLS.development}/api/auth/twitter` : `${projectURLS.productionLogin}`}>
       <Container>Login to twitter!</Container>
     </a>
   );

@@ -15,7 +15,7 @@ const { ENode } = require("./types/enums");
 import isDev from "./utils/isDev";
 
 const localArray = ["http://127.0.0.1:3000", "https://www.russell-carey.com"];
-const productionArray = ["https://www.russell-carey.com", "https://russell-carey.com"];
+const productionArray = ["https://www.tweety.russell-carey.com", "https://tweety.russell-carey.com"];
 
 app.use(
   cors({

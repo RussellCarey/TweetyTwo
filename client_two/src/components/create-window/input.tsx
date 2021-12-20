@@ -10,7 +10,7 @@ const Container = styled.input`
 
   padding: ${theme.spacing.space.medium};
 
-  border-radius: 15px;
+  border-radius: 15px 15px 15px 15px;
   border: 1px solid ${theme.colors.border.main};
 
   ${FocusInput}

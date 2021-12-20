@@ -10,7 +10,7 @@ const Container = styled.button`
 
   background-color: ${theme.colors.ui.main};
   border: 1px solid ${theme.colors.border.main};
-  border-radius: 15px;
+  border-radius: 15px 15px 15px 15px;
 
   color: ${theme.colors.text.white};
 

@@ -20,7 +20,7 @@ const TweetBox = styled.textarea`
 
   outline: none;
   border: solid 1px ${theme.colors.border.main};
-  border-radius: 15px;
+  border-radius: 15px 15px 15px 15px;
   padding: ${theme.spacing.space.medium};
 
   font-size: ${theme.fonts.fontsizes.medium};

@@ -8,8 +8,8 @@ const Container = styled.div`
   height: min-content;
   width: min-content;
   margin-right: ${theme.spacing.space.large};
-  border-radius: 50%;
-  outline: 2px solid ${theme.colors.border.main};
+  border-radius: 50% 50% 50% 50%;
+  border: 2px solid ${theme.colors.border.main};
 
   display: flex;
   justify-content: center;
@@ -19,6 +19,7 @@ const Container = styled.div`
 const ProfileImage = styled.img`
   width: 50px;
   height: 50px;
+  border-radius: 50% 50% 50% 50%;
 `;
 
 const NavBarImage: FunctionComponent = () => {

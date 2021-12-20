@@ -8,12 +8,7 @@ const Container = styled.div`
   height: min-content;
   width: min-content;
   margin-right: ${theme.spacing.space.large};
-
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-
+  border-radius: 50%;
   outline: 2px solid ${theme.colors.border.main};
 
   display: flex;
@@ -24,11 +19,6 @@ const Container = styled.div`
 const ProfileImage = styled.img`
   width: 50px;
   height: 50px;
-
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
 `;
 
 const NavBarImage: FunctionComponent = () => {

@@ -42,7 +42,6 @@ export const uploadNewUser = async (
   encryptedAccessToken: string,
   encryptedRefreshToken: String
 ) => {
-  console.log(profile);
   const uploadedUser: Query = await pool.query(
     `INSERT INTO users (twitter_id, display_name, profile_img, email, location, access_token, refresh_token ) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
     [

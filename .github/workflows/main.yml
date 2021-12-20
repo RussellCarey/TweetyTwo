@@ -1,7 +1,3 @@
-# HAd error with not indenting correctly - used GITHUB to check for errors
-# https://stackoverflow.com/questions/57806624/github-actions-how-to-build-project-in-sub-directory
-# :) :)
-
 name: Node.js CI
 
 on:

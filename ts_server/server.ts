@@ -25,8 +25,8 @@ app.use(
   })
 );
 
-app.use(express.json({ limit: "2mb" }));
-app.use(express.urlencoded({ extended: false, parameterLimit: 100000, limit: "2mb" }));
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: false, parameterLimit: 10, limit: "10mb" }));
 
 app.use(
   session({

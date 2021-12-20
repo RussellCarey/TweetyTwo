@@ -17,7 +17,7 @@ import { ERequestOutcomes } from "../../types/errors";
 import { EModal } from "../../context/modal/types";
 import { uploadImageFile, uploadTweet } from "./services/dbServices";
 
-import { checkDateInputs, checkWordCount } from "./utils/check-inputs";
+import { checkDateInputs, checkFileSize, checkWordCount } from "./utils/check-inputs";
 
 import JobsContext from "../../context/jobs/JobsContext";
 import { convertTimeDateToUnix } from "./utils/convert-to-unix";
@@ -84,6 +84,11 @@ const CreateWindow: FunctionComponent = () => {
 
   const imageOnChangeHandler = (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
+
+    // Check file size is under 10mb to give warning (not allowed on server)
+    const checkFile = checkFileSize(target.files![0]);
+    if (checkFile === ERequestOutcomes.isEmpty) showModal("Image size limit is 10MB", EModal.hasError);
+
     setFile(target.files![0]);
   };
 

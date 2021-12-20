@@ -12,6 +12,7 @@ function App() {
   const { getUserData } = authContext;
 
   useEffect(() => {
+    document.title = "Tweety - Tweet Scheduler!";
     if (Cookies.get("token")) {
       getUserData();
     }

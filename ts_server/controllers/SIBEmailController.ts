@@ -11,12 +11,12 @@ const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
 export const setWelcomeEmail = async (username: string) => {
-  const html = await pug.renderFile(`${__dirname}/../views/emails/testEmail.pug`, { username: username });
+  const html = await pug.renderFile(`${__dirname}/templates/testEmail.pug`, { username: username });
   return html;
 };
 
 export const setFailedMessage = async (username: string, message: string, date: string) => {
-  const html = await pug.renderFile(`${__dirname}/../views/emails/testEmail.pug`, { username: username });
+  const html = await pug.renderFile(`${__dirname}/templates/testEmail.pug`, { username: username });
   return html;
 };
 

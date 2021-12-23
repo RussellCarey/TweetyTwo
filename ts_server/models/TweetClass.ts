@@ -1,3 +1,4 @@
+import { sendWelcomeEmail } from "../controllers/emailController";
 import { Job } from "node-schedule";
 import { EEmailType } from "../types/enums";
 import { ScheduleClass } from "./ScheduleClass";
@@ -12,7 +13,6 @@ const catchAsync = require("../utils/catchAsync");
 const TweetClassServices = require("../services/tweetClassServices");
 const DatabaseServices = require("../services/databaseServices");
 const MediaController = require("../controllers/mediaController");
-const SIBEmailController = require("../controllers/SIBEmailController");
 
 export class TweetJobClass {
   private twitterID: number;
@@ -131,13 +131,7 @@ export class TweetJobClass {
 
       //! Testing - Email user when posted..
       //   type: subject: username: message: date
-      await SIBEmailController.sendEmail(
-        EEmailType.isWelcome,
-        "Tweet sent!",
-        this.twitterID,
-        "Posted a tweet!",
-        this.date
-      );
+      await sendWelcomeEmail();
 
       // Delete from queue in schedule manager..
       this.scheduleManager.deleteJobFromQueue(this.id!);

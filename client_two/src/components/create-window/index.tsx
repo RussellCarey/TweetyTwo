@@ -76,6 +76,7 @@ const CreateWindow: FunctionComponent = () => {
     const target = e.target as HTMLInputElement;
     const variable = target.id!;
     setTweet({ ...tweet, [variable]: target.value, unix: convertTimeDateToUnix(tweet.date, tweet.time) || 0 });
+    console.log(tweet);
   };
 
   const imageOnClickHandler = () => {

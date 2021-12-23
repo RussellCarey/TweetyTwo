@@ -1,5 +1,6 @@
 import { EEmailType } from "../types/enums";
 const AppErr = require("../utils/AppError");
+const pug = require("pug");
 
 const SibApiV3Sdk = require("sib-api-v3-sdk");
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
@@ -10,12 +11,12 @@ const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
 export const setWelcomeEmail = async (username: string) => {
-  const html = await pug.renderFile(`${__dirname}/../views/emails/welcome.pug`, { username: username });
+  const html = await pug.renderFile(`${__dirname}/../views/emails/testEMail.pug`, { username: username });
   return html;
 };
 
 export const setFailedMessage = async (username: string, message: string, date: string) => {
-  const html = await pug.renderFile(`${__dirname}/../views/emails/welcome.pug`, { username: username });
+  const html = await pug.renderFile(`${__dirname}/../views/emails/testEMail.pug`, { username: username });
   return html;
 };
 

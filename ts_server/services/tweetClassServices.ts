@@ -5,7 +5,7 @@ import { TweetJobClass } from "../models/TweetClass";
 import { Schedule } from "../models/ScheduleClass";
 import isDev from "../utils/isDev";
 
-// Creates a new twitter 'controller' with users details..
+// Creates a new twitter 'controller' with users details....
 export const NewTwit = (access: string, refresh: string) => {
   return new Twit({
     consumer_key: isDev() ? process.env.CONSUMER_API : process.env.PROD_CONSUMER_API,

@@ -14,7 +14,7 @@ const Container = styled.button`
   border-radius: 15px;
 
   outline: none;
-  border: none;
+  border: 1px solid ${theme.colors.border.main};
 
   font-size: ${theme.fonts.fontsizes.medium};
 

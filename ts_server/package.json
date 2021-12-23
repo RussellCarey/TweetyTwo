@@ -27,6 +27,7 @@
     "passport": "^0.5.0",
     "passport-twitter": "^1.0.4",
     "pg": "^8.7.1",
+    "sib-api-v3-sdk": "^8.2.1",
     "slugify": "^1.6.3",
     "ts-node": "^10.4.0",
     "twit": "^2.2.11",

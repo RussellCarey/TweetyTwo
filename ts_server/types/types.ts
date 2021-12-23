@@ -1,5 +1,6 @@
 import { Profile } from "passport";
 import { Session } from "express-session";
+import { StringMappingType } from "typescript";
 
 export interface ITwitterProfile extends Profile {
   id: string;
@@ -63,4 +64,11 @@ export interface IJobFromDB {
   accessToken: string;
   refreshToken: string;
   is_active: boolean;
+}
+
+export interface IEmailTemplate {
+  to: string;
+  firstName: StringMappingType;
+  url: string;
+  from: string;
 }

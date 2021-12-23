@@ -54,7 +54,7 @@ jobs:
           echo PORT='${{ secrets.PORT}}' >> .env
           echo PROD_URL='${{ secrets.PROD_URL}}' >> .env
           echo JWT_SECRET='${{ secrets.JWT_SECRET }}' >> .env
-          echo SENDINBLUE_KEY='${{ secrets.SENDINBLUE_KEY }}' >> .env
+          echo EMAIL_API_KEY='${{ secrets.EMAIL_API_KEY }}' >> .env
 
           cat .env
 

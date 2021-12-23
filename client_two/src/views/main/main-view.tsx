@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useContext } from "react";
+import React, { FunctionComponent, useEffect, useContext, useState } from "react";
 import ScheduleList from "../../components/jobs";
 import NavBar from "../../components/navbar";
 import SearchBox from "../../components/filter-area/search-bar/index";

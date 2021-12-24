@@ -27,7 +27,7 @@ const Container = styled(animated.div)`
   z-index: 500;
 
   width: 100vw;
-  height: 150px;
+  height: 170px;
   padding: ${theme.spacing.space.large} ${theme.spacing.space.xxxlage};
 
   display: flex;

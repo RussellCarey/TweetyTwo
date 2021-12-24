@@ -8,8 +8,7 @@ const Container = styled.div`
   height: 100%;
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr) !important;
   grid-gap: ${theme.spacing.space.xsmall};
 
   margin-left: ${theme.spacing.space.medium};

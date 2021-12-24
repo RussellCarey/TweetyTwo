@@ -3,11 +3,19 @@ import styled from "styled-components";
 import { theme } from "../../styles/theme/theme";
 import { HoverOutline, FocusInput } from "../../mixins/mixins";
 
-const Container = styled.input`
-  min-width: 98% !important;
-  height: 100%;
-  max-height: 50px;
+const Container = styled.div`
+  width: 100% !important;
+  height: 50px;
+`;
 
+const Title = styled.p`
+  color: grey;
+  font-size: ${theme.fonts.fontsizes.small};
+`;
+
+const Input = styled.input`
+  width: 100% !important;
+  height: 50px;
   color: ${theme.colors.ui.blue};
   padding: ${theme.spacing.space.medium};
   border: 1px solid ${theme.colors.border.main};
@@ -25,7 +33,12 @@ interface IProps {
 }
 
 const DateTimeInput: FunctionComponent<IProps> = ({ type, onChange, id, value }) => {
-  return <Container type={type} value={value} onChange={onChange} id={id} />;
+  return (
+    <Container>
+      <Title>{type}</Title>
+      <Input type={type} value={value} onChange={onChange} id={id} />
+    </Container>
+  );
 };
 
 export default DateTimeInput;

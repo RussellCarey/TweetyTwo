@@ -4,7 +4,7 @@ import { theme } from "../../styles/theme/theme";
 import { HoverOutline, FocusInput } from "../../mixins/mixins";
 
 const Container = styled.input`
-  min-width: 100% !important;
+  min-width: 100%;
   height: 100%;
   max-height: 50px;
 

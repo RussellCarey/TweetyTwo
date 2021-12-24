@@ -11,19 +11,24 @@ interface ICompProps {
 
 const Container = styled.div`
   width: max-content;
-  height: min-content;
+  height: min-content !important;
   border-radius: 15px;
+
+  display: flex;
+  justify-content: center:
+  align-items: center;
 
   position: absolute;
   top: ${theme.spacing.space.large};
   left: calc(50vw - (max-content / 2));
   z-index: 1000;
 
-  outline: 5px solid ${theme.colors.border.mainDark};
+  border: 5px solid ${theme.colors.border.mainDark};
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
   color: ${theme.colors.text.white};
-  padding: ${theme.spacing.space.large};
+  padding: ${theme.spacing.space.medium};
+
   background-color: ${(props: ICompProps) =>
     props.type === EModal.hasError ? theme.colors.modal.error : theme.colors.modal.ok};
 `;

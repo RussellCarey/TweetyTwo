@@ -7,12 +7,16 @@ const Container = styled.div`
   width: 100% !important;
   min-width: 100% !important;
   height: 50px;
-  padding-right: 0 ${theme.spacing.space.small};
+
+  @media (max-width: 500px) {
+    padding-right: ${theme.spacing.space.small};
+  }
 `;
 
 const Title = styled.p`
   color: grey;
   font-size: ${theme.fonts.fontsizes.small};
+  margin-bottom: ${theme.spacing.space.xsmall};
 `;
 
 const Input = styled.input`

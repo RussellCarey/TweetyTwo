@@ -7,6 +7,7 @@ const Container = styled.div`
   width: 100% !important;
   min-width: 100% !important;
   height: 50px;
+  padding: 0 ${theme.spacing.space.xsmall};
 `;
 
 const Title = styled.p`

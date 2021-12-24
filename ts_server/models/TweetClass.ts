@@ -12,7 +12,7 @@ const catchAsync = require("../utils/catchAsync");
 const TweetClassServices = require("../services/tweetClassServices");
 const DatabaseServices = require("../services/databaseServices");
 const MediaController = require("../controllers/mediaController");
-import { sendWelcomeEmail } from "../controllers/emailController";
+import { sendWelcomeEmail, sendFailedEmail } from "../controllers/emailController";
 
 export class TweetJobClass {
   private twitterID: number;
@@ -76,8 +76,12 @@ export class TweetJobClass {
   private failedAttempt = async (error: any) => {
     console.log("ERROR FROM FAILED ATTEMPT FUNCTION");
     console.log(error);
+
     await DatabaseServices.changeJobStatus(this.id, "failed");
     await this.scheduleManager.deleteJobFromQueue(this.id!);
+
+    // Send failed email to user.
+    await sendFailedEmail(this.twitterName, this.twitterEmail, this.message);
   };
 
   // Cancel a job from the scheulder..

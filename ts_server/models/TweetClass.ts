@@ -16,6 +16,8 @@ import { sendWelcomeEmail } from "../controllers/emailController";
 
 export class TweetJobClass {
   private twitterID: number;
+  private twitterEmail: string;
+  private twitterName: string;
   id: string | null;
   message: string;
   date: number;
@@ -30,6 +32,8 @@ export class TweetJobClass {
   constructor(
     scheduleManager: ScheduleClass,
     twitterID: number,
+    twitterEmail: string,
+    twitterName: string,
     message: string,
     date: number,
     imageURL: string | null,
@@ -42,6 +46,8 @@ export class TweetJobClass {
     this.isNew = isNew;
     this.message = message;
     this.twitterID = twitterID;
+    this.twitterEmail = twitterEmail;
+    this.twitterName = twitterName;
     this.id = id ? id : uuidv4();
     this.date = date;
     this.imageURL = imageURL;
@@ -131,7 +137,7 @@ export class TweetJobClass {
 
       //! Testing - Email user when posted..
       //   type: subject: username: message: date
-      await sendWelcomeEmail("username", "email");
+      await sendWelcomeEmail(this.twitterName, this.twitterEmail);
 
       // Delete from queue in schedule manager..
       this.scheduleManager.deleteJobFromQueue(this.id!);

@@ -16,6 +16,7 @@ const Title = styled.p`
 
 const Input = styled.input`
   width: 100% !important;
+  min-width: 100% !important;
   height: 50px;
   color: ${theme.colors.ui.blue};
   padding: ${theme.spacing.space.medium};

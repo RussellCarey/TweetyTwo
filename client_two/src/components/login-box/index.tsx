@@ -36,7 +36,7 @@ const Image = styled.img`
   height: 50px;
   border-radius: 50%;
   margin-bottom: ${theme.spacing.space.xlarge};
-  outline: 2px solid ${theme.colors.border.mainDark};
+  border: 2px solid ${theme.colors.border.mainDark};
 `;
 
 const LoginBox: FunctionComponent = () => {

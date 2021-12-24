@@ -1,8 +1,7 @@
 import { FunctionComponent, useContext } from "react";
 import styled from "styled-components";
-import { theme } from "../../../styles/theme/theme";
 import NavBarImage from "./image";
-import NavTitle from "./title";
+import { Title } from "../../resuable-styled/text";
 
 import AuthContext from "../../../context/auth/AuthContext";
 
@@ -20,7 +19,7 @@ const UserInfo: FunctionComponent = () => {
   return (
     <Container>
       <NavBarImage />
-      <NavTitle text={authState.user ? `Welcome ${authState.user.displayName}!` : "Welcome "} />
+      <Title>{authState.user ? `Welcome ${authState.user.displayName}!` : "Welcome "}</Title>
     </Container>
   );
 };

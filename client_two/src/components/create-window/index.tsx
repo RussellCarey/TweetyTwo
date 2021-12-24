@@ -1,6 +1,4 @@
 import React, { FunctionComponent, useState, useRef, useContext } from "react";
-import axios from "axios";
-import * as Cookies from "js-cookie";
 import styled from "styled-components";
 import { theme } from "../../styles/theme/theme";
 
@@ -76,7 +74,6 @@ const CreateWindow: FunctionComponent = () => {
     const target = e.target as HTMLInputElement;
     const variable = target.id!;
     setTweet({ ...tweet, [variable]: target.value, unix: convertTimeDateToUnix(tweet.date, tweet.time) || 0 });
-    console.log(tweet);
   };
 
   const imageOnClickHandler = () => {
@@ -103,7 +100,7 @@ const CreateWindow: FunctionComponent = () => {
   //! Need to add modal and resposnes from modal..
   const handleSubmitClick = async () => {
     if (!checkWordCount(tweet.message.length)) return showModal("Please check your word count", EModal.hasError);
-    if (!checkDateInputs(tweet)) return showModal("Please check your date or time", EModal.hasError);
+    if (!checkDateInputs(tweet)) return showModal("Please check / redo your date or time", EModal.hasError);
 
     const uploadImageAttempt = await uploadImage();
     if (uploadImageAttempt === ERequestOutcomes.hasError)

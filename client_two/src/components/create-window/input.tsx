@@ -4,10 +4,11 @@ import { theme } from "../../styles/theme/theme";
 import { HoverOutline, FocusInput } from "../../mixins/mixins";
 
 const Container = styled.input`
-  min-width: 100%;
+  min-width: 98% !important;
   height: 100%;
   max-height: 50px;
 
+  color: ${theme.colors.ui.blue};
   padding: ${theme.spacing.space.medium};
   border: 1px solid ${theme.colors.border.main};
   border-radius: 15px !important;

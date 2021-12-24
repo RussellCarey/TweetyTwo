@@ -4,7 +4,7 @@ const DatabaseServices = require("../services/databaseServices");
 const Cryptr = require("cryptr");
 const cryptr = new Cryptr(`${process.env.CRYPT}`);
 
-// Check if a user exists
+// Check if a user exists...
 export const checkUserExists = async (twitterID: string): Promise<Boolean> => {
   const checkedUser = await DatabaseServices.checkUserExists(twitterID);
   return checkedUser;

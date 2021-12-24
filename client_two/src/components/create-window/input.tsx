@@ -5,6 +5,7 @@ import { HoverOutline, FocusInput } from "../../mixins/mixins";
 
 const Container = styled.div`
   width: 100% !important;
+  min-width: 100% !important;
   height: 50px;
 `;
 

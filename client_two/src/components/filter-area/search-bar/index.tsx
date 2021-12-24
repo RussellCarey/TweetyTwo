@@ -19,7 +19,7 @@ const SearchContainer = styled.div`
   width: 40%;
 
   border: solid 1px ${theme.colors.border.main};
-  border-radius: 15px;
+  border-radius: 15px !important;
 
   display: flex;
   align-items: center;

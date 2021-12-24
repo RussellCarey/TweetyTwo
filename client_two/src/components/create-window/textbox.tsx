@@ -8,6 +8,7 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+
   @media (max-width: 550px) {
     margin-bottom: ${theme.spacing.space.large};
   }
@@ -20,7 +21,7 @@ const TweetBox = styled.textarea`
 
   outline: none;
   border: solid 1px ${theme.colors.border.main};
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 15px !important;
   padding: ${theme.spacing.space.medium};
 
   font-size: ${theme.fonts.fontsizes.medium};

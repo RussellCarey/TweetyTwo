@@ -54,6 +54,8 @@ export interface ISessionRequest extends Request {
 export interface IJobFromDB {
   job_id: string | null;
   twitter_id: number;
+  email: string;
+  display_name: string;
   status: string;
   message: string;
   date: number;

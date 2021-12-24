@@ -12,6 +12,8 @@ export const parseDateTokensCreateJob = (self: ScheduleClass, jobs: IJobFromDB) 
   // We can pass in the job.id here as we only use this function to create an exisiting job..
   self.createNewJob(
     jobs.twitter_id,
+    jobs.email,
+    jobs.display_name,
     jobs.message,
     jobs.date,
     jobs.image_url,

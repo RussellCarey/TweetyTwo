@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const AppErr = require("../utils/AppError");
-const pug = require("pug");
-const { htmlToText } = require("html-to-text");
+// const pug = require("pug");
+// const { htmlToText } = require("html-to-text");
 
 export const createTransport = () => {
   return nodemailer.createTransport({
@@ -31,7 +31,7 @@ export const sendWelcomeEmail = async (username: string, email: string) => {
       to: "russell_carey@hotmail.co.uk",
       subject: "Welcome to Tweety!",
       html: html,
-      text: htmlToText(html),
+      text: html,
     };
 
     // 3) Create a transport and send email

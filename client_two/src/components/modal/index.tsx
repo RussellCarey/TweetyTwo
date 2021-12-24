@@ -11,7 +11,7 @@ interface ICompProps {
 
 const Container = styled.div`
   width: max-content;
-  height: min-content !important;
+  height: 60px !important;
   border-radius: 15px;
 
   display: flex;

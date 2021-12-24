@@ -73,7 +73,14 @@ const CreateWindow: FunctionComponent = () => {
   const dataChangeHandler = (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     const variable = target.id!;
-    setTweet({ ...tweet, [variable]: target.value, unix: convertTimeDateToUnix(tweet.date, tweet.time) || 0 });
+
+    // Ensure we can use the changed time now not after refresh..
+    const unix = convertTimeDateToUnix(
+      target.id === "date" ? target.value : tweet.date,
+      target.id === "time" ? target.value : tweet.time
+    );
+
+    setTweet({ ...tweet, [variable]: target.value, unix: unix });
   };
 
   const imageOnClickHandler = () => {
@@ -120,6 +127,7 @@ const CreateWindow: FunctionComponent = () => {
 
   return (
     <Container style={animationProps}>
+      {console.log(tweet)}
       <TextArea value={tweet.message} onChange={dataChangeHandler} id="message" />
       <InputsContainer>
         <DateTimeInput type={"date"} value={tweet.date} onChange={dataChangeHandler} id="date" />

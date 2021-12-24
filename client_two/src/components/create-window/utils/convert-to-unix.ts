@@ -13,5 +13,7 @@ export const convertTimeDateToUnix = (date: string, time: string) => {
     // Convert to unix time for the database..
     const unixTime = new Date(convertedDate).getTime();
     return unixTime;
+  } else {
+    return 0;
   }
 };

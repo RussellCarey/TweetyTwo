@@ -10,6 +10,8 @@ const Container = styled.div`
   width: 100%;
   height: max-content;
 
+  border-radius: 15px !important;
+
   display: flex;
   align-items: center;
   justify-content: space-between;

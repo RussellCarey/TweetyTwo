@@ -38,10 +38,10 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: process.env.NODE_ENV === ENode.dev ? false : true,
+      secure: process.env.NODE_ENV === ENode.dev ? false : false,
       maxAge: 24 * 60 * 60 * 1000,
       httpOnly: process.env.NODE_ENV === ENode.dev ? false : false,
-      sameSite: process.env.NODE_ENV === ENode.dev ? "lax" : true,
+      sameSite: process.env.NODE_ENV === ENode.dev ? "lax" : "lax",
     },
   })
 );

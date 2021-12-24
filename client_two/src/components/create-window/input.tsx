@@ -9,9 +9,8 @@ const Container = styled.input`
   max-height: 50px;
 
   padding: ${theme.spacing.space.medium};
-
-  border-radius: 15px 15px 15px 15px;
   border: 1px solid ${theme.colors.border.main};
+  border-radius: 15px 15px 15px 15px;
 
   ${FocusInput}
   ${HoverOutline}

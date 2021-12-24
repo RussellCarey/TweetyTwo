@@ -19,7 +19,7 @@ export const FocusInput = css`
 
 export const HoverOutline = css`
   transition: all 0.3s ease-in-out;
-  border: 1px solid transparent;
+  border: 1px solid ${theme.colors.border.main};
 
   &:hover {
     border-radius: 15px !important;
@@ -29,7 +29,7 @@ export const HoverOutline = css`
 
 export const HoverOutlineClick = css`
   transition: all 0.3s ease-in-out;
-  border: 1px solid transparent;
+  border: 1px solid ${theme.colors.border.main};
 
   &:hover {
     cursor: pointer;

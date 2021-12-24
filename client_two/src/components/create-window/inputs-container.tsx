@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../styles/theme/theme";
 
 const Container = styled.div`
+  position: relative;
   width: 35%;
   height: 100%;
 

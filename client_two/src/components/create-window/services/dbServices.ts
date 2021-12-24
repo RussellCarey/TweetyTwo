@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as Cookies from "js-cookie";
 import { ERequestOutcomes } from "../../../types/errors";
-import { ITweetObject, IUploadAttempt } from "../types/types";
+import { ITweetObject, IUploadAttempt, IReqError } from "../types/types";
 
 import { projectURLS } from "../../../utils/urls";
 import isDev from "../../../utils/is-dev";
@@ -23,7 +23,8 @@ export const uploadImageFile = async (image: File) => {
     });
 
     return imagePost.data;
-  } catch (error) {
+  } catch (error: any) {
+    if (error.response?.status! === 429) return ERequestOutcomes.hasLimitError;
     return ERequestOutcomes.hasError;
   }
 };
@@ -46,8 +47,8 @@ export const uploadTweet = async (tweet: ITweetObject, uploadAttempt: IUploadAtt
     });
 
     return post;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    if (error.response?.status! === 429) return ERequestOutcomes.hasLimitError;
     return ERequestOutcomes.hasError;
   }
 };

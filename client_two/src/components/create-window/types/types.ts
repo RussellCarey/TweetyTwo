@@ -23,3 +23,7 @@ export interface ITextAreaProps {
 export interface IWordCountProps {
   wordCount: number;
 }
+
+export interface IReqError extends Error {
+  response: Object;
+}

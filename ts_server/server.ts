@@ -1,4 +1,5 @@
 const express = require("express");
+const rateLimit = require("express-rate-limit");
 const session = require("express-session");
 const passportServer = require("passport");
 const cors = require("cors");
@@ -17,6 +18,12 @@ import isDev from "./utils/isDev";
 const localArray = ["http://127.0.0.1:3000", "https://www.russell-carey.com"];
 const productionArray = ["https://www.tweety.russell-carey.com", "https://tweety.russell-carey.com"];
 
+const limiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 60 minutes
+  max: 30, // limit each IP to 100 requests per windowMs
+  message: "You have reached your post limit, please wait one hour.",
+});
+
 app.use(
   cors({
     credentials: true, // allow session cookie from browser to pass through
@@ -24,9 +31,6 @@ app.use(
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
-
-app.use(express.json({ limit: "10mb" }));
-app.use(express.urlencoded({ extended: false, parameterLimit: 10, limit: "10mb" }));
 
 app.use(
   session({
@@ -41,6 +45,11 @@ app.use(
     },
   })
 );
+
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: false, parameterLimit: 10, limit: "10mb" }));
+
+app.use(!isDev() ? "/tweetyapi/post/message" : "/api/post", limiter);
 
 app.use(passportServer.initialize());
 app.use(passportServer.session());

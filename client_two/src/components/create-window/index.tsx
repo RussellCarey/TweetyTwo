@@ -112,13 +112,18 @@ const CreateWindow: FunctionComponent = () => {
     const uploadImageAttempt = await uploadImage();
     if (uploadImageAttempt === ERequestOutcomes.hasError)
       return showModal("Error creating tweety. Please try again.", EModal.hasError);
+    if (uploadImageAttempt === ERequestOutcomes.hasLimitError)
+      return showModal("Reached upload limit. Please try again in one hour.", EModal.hasError);
 
     const submittedTweet = await uploadTweet(tweet, uploadImageAttempt.data);
     if (submittedTweet === ERequestOutcomes.hasError)
       return showModal("Error creating tweet. Please try again.", EModal.hasError);
+    if (submittedTweet === ERequestOutcomes.hasLimitError)
+      return showModal("Reached upload limit. Please try again in one hour.", EModal.hasError);
 
     showModal("Tweet created!", EModal.isOK);
 
+    // Need to implement a queue to give each modals message time to shine..
     setTimeout(() => {
       closeCreateWindow();
       addNewJob(submittedTweet.data.jobs.rows);

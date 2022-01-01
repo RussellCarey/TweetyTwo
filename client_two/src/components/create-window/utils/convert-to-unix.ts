@@ -6,7 +6,8 @@ export const convertTimeDateToUnix = (date: string, time: string) => {
 
     // Add 0 to days / months that are less than 10..
     const month = dateObj.getMonth() < 10 ? `0${dateObj.getMonth() + 1}` : `${dateObj.getMonth()}`;
-    const day = dateObj.getDate() < 10 ? `0${dateObj.getDate() + 1}` : `${dateObj.getDate()}`;
+    const day = dateObj.getDate() < 10 ? `0${dateObj.getDate()}` : `${dateObj.getDate()}`;
+    console.log(month, day);
 
     // had difficulty with date trasforming so used this npm package. (maybe too many steps) (refactor later)..
     const convertedDate = DateConverter.parse(

@@ -18,28 +18,23 @@ exports.uploadTweet = catchAsync(async (req: IReqWithBody, res: Response, next: 
   if (!req.body || !req.user) return next(new AppError("No body or user", 400));
 
   // Need to get the users codes from the DB to send..
-  const id = req.user.id;
-  const userData = await pool.query(`SELECT * from users WHERE twitter_id = $1`, [id]);
+  const userData = await pool.query(`SELECT * from users WHERE twitter_id = $1`, [req.user.id]);
   const userDataObject = userData.rows[0];
 
-  const twitterName: string = userDataObject.display_name;
-  const twitterID: number = userDataObject.twitter_id;
-  const twitterEmail: string = userDataObject.email;
-  const message = req.body.message;
-  const date = Number(req.body.unix);
-  const imageURL = req.body.imageURL;
-  const imageName = req.body.imageName;
+  const { display_name, twitter_id, email } = userDataObject;
+  const { message, unix, imageURL, imageName } = req.body;
+  const unixNumber = +unix;
 
   const access: string = await cryptr.decrypt(userDataObject.access_token);
   const refresh: string = await cryptr.decrypt(userDataObject.refresh_token);
 
   // We pass in null at the end as this is  NEW job, it doesnt have an ID yet from UUID
   Schedule.createNewJob(
-    twitterID,
-    twitterEmail,
-    twitterName,
+    twitter_id,
+    email,
+    display_name,
     message,
-    date,
+    unixNumber,
     imageURL,
     imageName,
     access,
@@ -49,7 +44,7 @@ exports.uploadTweet = catchAsync(async (req: IReqWithBody, res: Response, next: 
   );
 
   // Get all jobs here to send back to the client - verifies it matches that on the DB..
-  const allJobs = await DatabaseServies.getAllUsersJobs(twitterID);
+  const allJobs = await DatabaseServies.getAllUsersJobs(twitter_id);
   const rows = allJobs.rows.filter((jobs: IJobFromDB) => jobs.is_active !== false && jobs.status !== "success");
   allJobs.rows = rows;
 
@@ -80,6 +75,7 @@ exports.deleteJob = catchAsync(async (req: IReqWithBody, res: Response, next: Ne
   const jobID = req.body.jobID;
   if (!jobID) next(new AppError("Job ID not supplied", 400));
 
+  //! THIS IS DB CHANGE IT..
   let imageName;
   const foundItem = await DatabaseServies.getOneJob(jobID);
   if (foundItem.rows.length > 0) imageName = foundItem.rows[0].image_name;

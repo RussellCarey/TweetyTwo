@@ -17,6 +17,8 @@ const newTwitterStrategy: Strategy = new TwitterStrategy(
   async (accessToken: string, refreshToken: string, profile: ITwitterProfile, done: any) => {
     // Check if user exists and create if needed..
     const foundProfile = await checkUserExists(profile.id);
+
+    // If no profile, create a new one and send welcome email to that user..
     if (!foundProfile) {
       await createNewUser(profile, accessToken, refreshToken);
       await sendWelcomeEmail(profile.displayName, profile.emails[0].value);

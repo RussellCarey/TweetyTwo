@@ -55,8 +55,10 @@ jobs:
           echo PROD_URL='${{ secrets.PROD_URL}}' >> .env
           echo JWT_SECRET='${{ secrets.JWT_SECRET }}' >> .env
           echo SENDGRID_KEY='${{ secrets.SENDGRID_KEY }}' >> .env
-
-
+          echo SESSION_SECRET='${{ secrets.SESSION_SECRET }}' >> .env
+          echo ADMIN_EMAIL='${{ secrets.ADMIN_EMAIL }}' >> .env
+          echo SPACES_ENDPOINT='${{ secrets.SPACES_ENDPOINT }}' >> .env
+          echo SPACES_BUCKET='${{ secrets.SPACES_BUCKET }}' >> .env
           cat .env
 
       - run: |

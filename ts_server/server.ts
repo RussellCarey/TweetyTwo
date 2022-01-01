@@ -15,26 +15,23 @@ const postRoutes = require("./routes/postRoutes");
 const { ENode } = require("./types/enums");
 import isDev from "./utils/isDev";
 
-const localArray = ["http://127.0.0.1:3000", "https://www.russell-carey.com"];
-const productionArray = ["https://www.tweety.russell-carey.com", "https://tweety.russell-carey.com"];
-
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 60 minutes
-  max: 30, // limit each IP to 100 requests per windowMs
+  max: 30, // limit each IP to X amount requests per windowMs
   message: "You have reached your post limit, please wait one hour.",
 });
 
 app.use(
   cors({
     credentials: true, // allow session cookie from browser to pass through
-    origin: process.env.NODE_ENV === ENode.prod ? productionArray : localArray,
+    origin: process.env.NODE_ENV === ENode.prod ? process.env.PROD_URL : process.env.DEV_URL,
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
 
 app.use(
   session({
-    secret: "cats",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -46,17 +43,21 @@ app.use(
   })
 );
 
+// Filters and limits..
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: false, parameterLimit: 10, limit: "10mb" }));
-
-app.use(!isDev() ? "/tweetyapi/post/message" : "/api/post", limiter);
 
 app.use(passportServer.initialize());
 app.use(passportServer.session());
 
+// Limit amount of post someone can do in a space of time.. (to stop spamming)
+app.use(!isDev() ? "/tweetyapi/post/message" : "/api/post", limiter);
+
+// Customize routes depending on dev or prod.
 app.use(!isDev() ? "/tweetyapi/auth" : "/api/auth", authRoutes);
 app.use(!isDev() ? "/tweetyapi/post" : "/api/post", postRoutes);
 
+// Catch any error and send to the error controller..
 app.use(ErrorController);
 
 //? App listen start

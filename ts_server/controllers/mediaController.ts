@@ -12,14 +12,14 @@ const storage = multer.memoryStorage();
 const { v4: uuidv4 } = require("uuid");
 
 const s3Client = new AWS.S3({
-  endpoint: "sgp1.digitaloceanspaces.com",
+  endpoint: process.env.SPACES_ENDPOINT,
   accessKeyId: process.env.AWS_KEY,
   secretAccessKey: process.env.AWS_SECRET,
   ACL: "public-read",
 });
 
 let uploadParams = {
-  Bucket: "droppyspace",
+  Bucket: process.env.SPACES_BUCKET,
   Key: "",
   Body: "",
   ACL: "public-read",
@@ -28,6 +28,7 @@ let uploadParams = {
 exports.uploadAll = multer({ storage: storage }).fields([{ name: "image", maxCount: 1 }]);
 
 exports.uploadImage = catchAsync(async (req: IReqWithBody, res: Response, next: NextFunction) => {
+  // Create image random name and set params for image upload..
   const imageName = `${uuidv4()}.png`;
   uploadParams.Key = imageName;
   uploadParams.Body = req.files.image[0].buffer;
@@ -37,6 +38,7 @@ exports.uploadImage = catchAsync(async (req: IReqWithBody, res: Response, next: 
       throw new AppError("Error uploading image file", 500);
     }
 
+    // Client needs the data URLs and the image name to continue with the next step.
     res.json({
       status: "success",
       data: {

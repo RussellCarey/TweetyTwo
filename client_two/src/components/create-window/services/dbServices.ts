@@ -30,6 +30,8 @@ export const uploadImageFile = async (image: File) => {
 };
 
 export const uploadTweet = async (tweet: ITweetObject, uploadAttempt: IUploadAttempt) => {
+  console.log(tweet);
+  console.log(tweet.unix);
   try {
     const post = await axios.request({
       method: "POST",

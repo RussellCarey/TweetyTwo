@@ -23,6 +23,7 @@ exports.uploadTweet = catchAsync(async (req: IReqWithBody, res: Response, next: 
 
   const { display_name, twitter_id, email } = userDataObject;
   const { message, unix, imageURL, imageName } = req.body;
+  console.log(req.body);
   const unixNumber = +unix;
 
   const access: string = await cryptr.decrypt(userDataObject.access_token);

@@ -121,12 +121,10 @@ const JobState = (props: IProps) => {
   // };
 
   const showCreateWindow = () => {
-    console.log("Show create window");
     dispatch({ type: SHOW_WINDOW });
   };
 
   const closeCreateWindow = () => {
-    console.log("Close create window");
     dispatch({ type: CLOSE_WINDOW });
   };
 

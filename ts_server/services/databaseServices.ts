@@ -3,6 +3,12 @@ import { ITwitterProfile } from "../types/types";
 import { Query, QueryResult } from "pg";
 import { TweetJobClass } from "../models/TweetClass";
 
+export const getUserData = async (id: string) => {
+  // Need to get the users codes from the DB to send..
+  const userData = await pool.query(`SELECT * from users WHERE twitter_id = $1`, [id]);
+  return userData.rows[0];
+};
+
 // Set job to inactive in the databsae - so it doesnt send a tweet or appear in UI.
 export const setJobToInactive = async (id: string) => {
   const editedJob = await pool.query(`UPDATE jobs SET is_active = $1 WHERE job_id = $2`, [false, id]);

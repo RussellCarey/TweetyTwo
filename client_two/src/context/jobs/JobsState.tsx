@@ -3,14 +3,14 @@ import axios from "axios";
 import * as Cookies from "js-cookie";
 
 import { ERequestOutcomes } from "../../types/errors";
-import { SET_JOBS, SET_ALL_JOBS, RESET_JOBS, SHOW_WINDOW, CLOSE_WINDOW, IJobsState } from "./types";
+import { SET_JOBS, SET_ALL_JOBS, RESET_JOBS, SHOW_WINDOW, CLOSE_WINDOW, IJobsState, EOrderJobs } from "./types";
 
 import { IJobObject } from "./types";
 
 import isDev from "../../utils/is-dev";
 import { projectURLS } from "../../utils/urls";
 
-import JobsReducer from "./jobsReducer";
+import JobsReducer from "./JobsReducer";
 import JobsContext from "./JobsContext";
 
 export interface IProps {
@@ -26,7 +26,6 @@ const JobState = (props: IProps) => {
 
   const [jobsState, dispatch] = useReducer(JobsReducer, state);
 
-  //
   const getAllJobs = async () => {
     try {
       const jobs = await axios.request({

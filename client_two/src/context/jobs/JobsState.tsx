@@ -3,7 +3,7 @@ import axios from "axios";
 import * as Cookies from "js-cookie";
 
 import { ERequestOutcomes } from "../../types/errors";
-import { SET_JOBS, SET_ALL_JOBS, RESET_JOBS, SHOW_WINDOW, CLOSE_WINDOW, IJobsState, EOrderJobs } from "./types";
+import { SET_JOBS, SET_ALL_JOBS, RESET_JOBS, SHOW_WINDOW, CLOSE_WINDOW, IJobsState } from "./types";
 
 import { IJobObject } from "./types";
 

@@ -26,6 +26,7 @@ const JobState = (props: IProps) => {
 
   const [jobsState, dispatch] = useReducer(JobsReducer, state);
 
+  //
   const getAllJobs = async () => {
     try {
       const jobs = await axios.request({

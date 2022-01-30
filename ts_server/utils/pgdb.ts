@@ -1,16 +1,24 @@
+const fs = require("fs");
 const Pool = require("pg").Pool;
 import isDev from "./isDev";
 
+// user not username!!!!!!
 const prodPool = new Pool({
-  connectionString: process.env.PROD_DATABASE_URL,
+  user: process.env.PROD_DB_USERNAME,
+  password: process.env.PROD_DB_PW,
+  host: process.env.PROD_DB_HOST,
+  port: process.env.PROD_DB_PORT,
+  database: process.env.PROD_DB_NAME,
   ssl: {
     rejectUnauthorized: false,
+    ca: fs.readFileSync("./cert/ca-certificate.crt").toString(),
   },
 });
 
 const devPool = new Pool({
   host: "localhost",
   user: "postgres",
+  database: "tweety",
   password: process.env.DEV_DATABASE_PW,
   port: 6543,
   max: 20,
@@ -18,4 +26,4 @@ const devPool = new Pool({
   connectionTimeoutMillis: 2000,
 });
 
-module.exports = isDev() ? devPool : prodPool;
+export default isDev() ? devPool : prodPool;

@@ -24,8 +24,8 @@ jobs:
         env:
           CI: false
 
-      - run: pm2 delete tweety_client
-      - run: pm2 delete tweety_server
+      # - run: pm2 delete tweety_client
+      # - run: pm2 delete tweety_server
 
       - run: pm2 start npm --name "tweety_client" -- run serve
         working-directory: client_two
@@ -45,6 +45,11 @@ jobs:
           echo PROD_CONSUMER_API='${{ secrets.PROD_CONSUMER_API }}' >> .env
           echo PROD_CONSUMER_SECRET_KEY='${{ secrets.PROD_CONSUMER_SECRET_KEY }}' >> .env
           echo PROD_CALLBACK_URL='${{ secrets.PROD_CALLBACK_URL }}' >> .env
+          echo PROD_DB_USERNAME='${{ secrets.PROD_DB_USERNAME }}' >> .env
+          echo PROD_DB_PW='${{ secrets.PROD_DB_PW }}' >> .env
+          echo PROD_DB_PORT='${{ secrets.PROD_DB_PORT }}' >> .env
+          echo PROD_DB_HOST='${{ secrets.PROD_DB_HOST }}' >> .env
+          echo PROD_DB_NAME='${{ secrets.PROD_DB_NAME }}' >> .env
           echo AWS_KEY='${{ secrets.AWS_KEY }}' >> .env
           echo AWS_SECRET='${{ secrets.AWS_SECRET }}' >> .env
           echo SPACES_NAME='${{ secrets.SPACES_NAME }}' >> .env
@@ -62,9 +67,9 @@ jobs:
           cat .env
 
       - run: |
-          pm2 stop tweety_client
+
           pm2 start tweety_client
-          pm2 stop tweety_server
+
           pm2 start tweety_server
           pm2 save
           sudo service nginx restart

@@ -24,8 +24,8 @@ jobs:
         env:
           CI: false
 
-      # - run: pm2 delete tweety_client
-      # - run: pm2 delete tweety_server
+      - run: pm2 delete tweety_client
+      - run: pm2 delete tweety_server
 
       - run: pm2 start npm --name "tweety_client" -- run serve
         working-directory: client_two
@@ -67,9 +67,9 @@ jobs:
           cat .env
 
       - run: |
-
+          pm2 stop tweety_client
           pm2 start tweety_client
-
+          pm2 stop tweety_server
           pm2 start tweety_server
           pm2 save
           sudo service nginx restart

@@ -1,7 +1,6 @@
-const pool = require("../utils/pgdb");
+import pool from "../utils/pgdb";
 import { ITwitterProfile } from "../types/types";
 import { Query, QueryResult } from "pg";
-import { TweetJobClass } from "../models/TweetClass";
 
 export const getUserData = async (id: string) => {
   // Need to get the users codes from the DB to send..
@@ -28,7 +27,7 @@ export const getAllUsersJobs = async (twitterID: string) => {
 };
 
 // Upload one job to the DB..
-export const uploadOneJob = async (self: TweetJobClass, twitterID: number) => {
+export const uploadOneJob = async (self: any, twitterID: number) => {
   const uploadedJob = await pool.query(
     `INSERT INTO jobs (job_id, user_twitter_id, message, date, image_url, image_name, status) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
     [self.id, twitterID, self.message, self.date, self.imageURL, self.imageName, "pending"]
@@ -37,7 +36,7 @@ export const uploadOneJob = async (self: TweetJobClass, twitterID: number) => {
 };
 
 // Change a job status, eg pending, success, failed..
-export const changeJobStatus = async (tweetObject: TweetJobClass, status: string) => {
+export const changeJobStatus = async (tweetObject: any, status: string) => {
   const editedJob = await pool.query(`UPDATE jobs SET status = $1 WHERE job_id = $2`, [status, tweetObject.id]);
   return editedJob;
 };

@@ -1,4 +1,3 @@
-const fs = require("fs");
 const Pool = require("pg").Pool;
 import isDev from "./isDev";
 
@@ -26,4 +25,6 @@ const devPool = new Pool({
   connectionTimeoutMillis: 2000,
 });
 
-export default isDev() ? devPool : prodPool;
+const savedPool = prodPool;
+
+export default savedPool;

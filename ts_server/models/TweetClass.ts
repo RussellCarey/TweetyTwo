@@ -14,6 +14,19 @@ const DatabaseServices = require("../services/databaseServices");
 const MediaController = require("../controllers/mediaController");
 import { sendWelcomeEmail, sendFailedEmail } from "../controllers/emailController";
 
+// ------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
+// Future notes
+// ------------------------------------------------------------------------------
+// Tried using classes here but should have kept with functional programming.
+// I need to learn about OOP / others before I try to implement code like this..
+// Future plan.
+// ------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
+
 export class TweetJobClass {
   private twitterID: number;
   private twitterEmail: string;
@@ -58,19 +71,6 @@ export class TweetJobClass {
     this.scheduledData = null;
     this.createScedule(this);
   }
-
-  // ------------------------------------------------------------------------------
-  // ------------------------------------------------------------------------------
-  // ------------------------------------------------------------------------------
-  // Future notes
-  // ------------------------------------------------------------------------------
-  // Tried using classes here but should have kept with functional programming.
-  // I need to learn about OOP / others before I try to implement code like this..
-  // Future plan.
-  // ------------------------------------------------------------------------------
-  // ------------------------------------------------------------------------------
-  // ------------------------------------------------------------------------------
-  // ------------------------------------------------------------------------------
 
   // Change status in the database to failed and remove it from the job que (if there)..
   private failedAttempt = async (error: any) => {

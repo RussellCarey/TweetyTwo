@@ -17,8 +17,11 @@ exports.uploadTweet = catchAsync(async (req: IReqWithBody, res: Response, next: 
   // Check we were able to get a user through login and save..
   if (!req.body || !req.user) return next(new AppError("No body or user", 400));
 
+  console.log(req.body);
+  console.log(req.user.id);
+
   // Need to get the users codes from the DB to send..
-  const userDataObject = DatabaseServies.getUserData(req.user.id);
+  const userDataObject = await DatabaseServies.getUserData(req.user.id);
 
   const { display_name, twitter_id, email } = userDataObject;
   const { message, unix, imageURL, imageName } = req.body;

@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 import { IError } from "../types/types";
 
-//
+////
 const sendErrorDev = (err: IError, res: Response) => {
   res.status(err.statusCode).json({
     status: err.status,

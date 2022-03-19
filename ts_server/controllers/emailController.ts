@@ -2,7 +2,7 @@ const AppErr = require("../utils/AppError");
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_KEY);
 
-// Using SendGrid and its API..
+/// Using SendGrid and its API..
 const sendMail = (message: Object) => {
   sgMail
     .send(message)

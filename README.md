@@ -1,6 +1,8 @@
 # Tweety - https://tweety.russell-carey.com
 
-A tweet scheduler allowing you to schedule tweets at any time / date into the future. There is an option to add an image to the tweet too.
+A tweet scheduler allowing you to schedule tweets at any time / date into the future. There is an option to add an image to the tweet too.  
+
+Link to my initial design: https://xd.adobe.com/view/d0b29c30-220f-47bf-8dab-7ee9efdd9828-85e1/  
 
 ![alt text](https://github.com/RussellCarey/Tweety/blob/690ffb3156c721752fef71ad989f850f3db778d3/screenshot_1.png)
 
